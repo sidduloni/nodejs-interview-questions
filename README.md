@@ -6,13 +6,13 @@ Ans:
 - `let` is block-scoped, can be reassigned but not redeclared.
 - `const` is block-scoped and cannot be reassigned or redeclared (but can be modified for objects and arrays).
 
-S.No 2: What is hoisting in Javascript? 
+**S.No 2: What is hoisting in Javascript? **
 Ans: Hoisting is a JavaScript mechanism where variable and function declarations are moved to the top of their containing scope during the compile phase. This allows variables and functions to be used before they are declared.
 
-S.No 3: Explain currying in JavaScript?  
+**S.No 3: Explain currying in JavaScript?  **
 Ans: Currying is the process of transforming a function with multiple arguments into a series of functions with single arguments. It enables partial application of functions, making the code more modular and flexible.
 
-S.No 4: What is a callback function?
+**S.No 4: What is a callback function?**
 Ans: A callback function is a function passed as an argument to another function and is executed after the completion of a specific task. It's commonly used in asynchronous programming to handle results once an operation finishes.
 Ex: function asyncOperation(callback) {
     setTimeout(function () {
@@ -26,7 +26,7 @@ function callbackFunction(message) {
 
 asyncOperation(callbackFunction);
 
-S.No 4.1 : What is promise write equivalent promise for the above callback function?
+**S.No 4.1 : What is promise write equivalent promise for the above callback function?**
 Ans: Promises are a way to implement asynchronous programming in JavaScript. They are easy to manage when dealing with multiple asynchronous operations where callbacks can create callback hell leading to unmanageable code.
 A Promise can be in one of three states:
 Pending: Initial state, neither fulfilled nor rejected.
@@ -45,15 +45,15 @@ Equvalnt example for above Eg:
     }).catch((error) => {
         console.log("promise error:", error)
     })
-S.No 4.2 : Explain async/await
+**S.No 4.2 : Explain async/await**
 Ans: Async/Await makes it easier to write promises. 
 'async' : return a promise, always.  await : the program wait until the Promise resolves.
 
 
-S.No 5: Explain Polymorphism.
+**S.No 5: Explain Polymorphism.**
 Ans: Polymorphism in JavaScript allows objects to be treated as instances of their parent class. This enables methods to be used interchangeably among objects, promoting code reusability and flexibility.
 
-S.No 6: What is IIFE?  
+**S.No 6: What is IIFE?  **
 Ans: Immediately Invoked Function Expression (IIFE) is a JavaScript function that is executed immediately after it's created. It's a way to encapsulate and isolate variables, preventing them from polluting the global scope.
 
 S.No 7: What is callback hell in Node.js?
