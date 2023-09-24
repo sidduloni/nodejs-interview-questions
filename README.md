@@ -1,6 +1,6 @@
 # nodejs-interview-questions
 
-#S.No 1:Javascript difference between var, let, and const?
+#S.No 1:Javascript difference between var, let, and const#
 ##Ans:
 - `var` is function-scoped and can be redeclared and reassigned.
 - `let` is block-scoped, can be reassigned but not redeclared.
