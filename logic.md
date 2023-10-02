@@ -19,18 +19,15 @@ function noLoop(start, end) {
 ```javascript
 let a=[1,2,3,4,5,6,7,8,9,10]
 
-const result = a.reduce(1, a) {
-  if()
-}
-
-function printNumbers(start, end) {
-  if (start <= end) {
-    console.log(start);
-    printNumbers(start + 1, end);
+const sumOfSquaresOfOddNumbers = a.reduce((sum, num) => {
+  if (num % 2 !== 0) {
+    return sum + num * num;
   }
-}
+  return sum;
+}, 0);
 
-printNumbers(1, 20);
+console.log('Sum of squares of odd numbers:', sumOfSquaresOfOddNumbers);
+
 ```
 
 ## S.No 3: Add 2 numbers using recursion 
