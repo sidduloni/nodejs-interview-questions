@@ -1,5 +1,5 @@
 
-[Go to NodeJs Logic questions](https://github.com/sidduloni/nodejs-interview-questions/logic.md)
+[Go to NodeJs Logic questions](https://github.com/sidduloni/nodejs-interview-questions/blob/main/logic.md)
 
 ## Nodejs FAQ
 
