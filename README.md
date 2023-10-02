@@ -1,4 +1,9 @@
 
+[Go to NodeJs Logic questions](https://github.com/sidduloni/nodejs-interview-questions/logic.md)
+
+## Nodejs FAQ
+
+#nodejs-interview-questions
 ---
 
 ## S.No 1: Javascript difference between var, let, and const?
@@ -365,39 +370,38 @@ readFilePromise('file-that-does-not-exist.txt')
 
 
 ## S.No 37  How does Node.js provide security in applications?
-**Ans: **
+**Ans:**
 
 **Dependency Management:**  Node.js promotes regular updates and maintenance of dependencies to ensure the use of the latest security patches and updates.
 Input Validation and Sanitization: Proper input validation and sanitization techniques prevent malicious code injection, such as SQL injection and cross-site scripting (XSS) attacks.
+
 **Authentication and Authorization:**
-
 Robust authentication mechanisms and access controls ensure that only authorized users can access sensitive parts of the application.
+
 **HTTPS and SSL/TLS:**
-
 Utilizing HTTPS with SSL/TLS encryption guarantees data privacy and integrity during transmission.
+
 **Secure Coding Practices:**
-
 Following secure coding practices helps prevent common vulnerabilities like injection attacks, XSS, and CSRF.
-**File Upload Security:**
 
+**File Upload Security:**
 Implementing stringent validation and restrictions on file uploads prevents security threats like file inclusion and executable file uploads.
 **Least Privilege Principle:**
-
 Applying the principle of least privilege ensures that users and processes have minimal access necessary for their functions, reducing potential attack surfaces.
+
 **Security Headers and CORS:**
-
 Configuring secure headers (e.g., Content Security Policy) and enforcing proper Cross-Origin Resource Sharing (CORS) mitigates specific types of attacks like clickjacking and data theft.
+
 **Security Libraries and Middleware:**
-
 Leveraging security-focused libraries and middleware, such as Helmet.js, automates the application of security measures, enhancing overall security.
+
 **Error Handling:**
-
 Implementing secure error handling prevents exposure of sensitive information, ensuring that error messages are informative yet safe.
+
 **Logging and Monitoring:**
-
 Incorporating logging mechanisms and monitoring tools allows tracking and detection of security-relevant events, facilitating timely responses to potential security incidents.
-**Security Audits and Code Reviews:**
 
+**Security Audits and Code Reviews:**
 Conducting regular security audits and code reviews identifies vulnerabilities and weaknesses in the application, enabling proactive security enhancements.
 
 
@@ -453,16 +457,17 @@ if (cluster.isMaster) {
   }).listen(8000);
 }
 ```
-
 In this example, the master process forks multiple worker processes, and each worker handles HTTP requests independently. The requests are distributed among the workers in a round-robin fashion.
 
 
 ## S.No 39  Difference between PUT and POST
 **Ans:** 
+
 **Put:**
 Update or replace an existing resource
 Idempotent (Multiple identical requests have the same effect as a single request)
 Considered safe, as it should not have side effects on the server (though it modifies data).
+
 **Post:**
 Submit data to create a new resource
 Not idempotent 
@@ -473,22 +478,18 @@ Not considered safe - creating or deleting resources.
 They are sent by the browser with every subsequent request to the same domain
 Cookie limit 4KB
 Protecting Cookies in JavaScript: 
-**Secure and HTTP-only Cookies:**
 
+**Secure and HTTP-only Cookies:**
 Use the Secure flag to ensure cookies are only sent over HTTPS, and use the HttpOnly flag to prevent client-side scripts from accessing the cookie, thus protecting against certain types of attacks like cross-site scripting (XSS).
 
 **Limit Cookie Scope:**
-
 Set the Domain and Path attributes appropriately to limit the scope of the cookie to specific domains and paths, ensuring it's not accessible where it's not needed.
 
 **Session Cookies:**
-
 For sensitive information, consider using session cookies that expire when the user closes the browser, ensuring data isn't stored longer than necessary.
 
 **Regularly Rotate and Invalidate Cookies:**
-
 Rotate session IDs or tokens periodically, especially after critical operations like login or password change, to mitigate the risk of stolen or leaked credentials.
-
 
 
 ## S.No 41 Diff btw package.json and package-lock.json files
@@ -499,22 +500,31 @@ package-lock.json contains specific, exact versions of each dependency and its s
 
 ## S.No 42 what take(), map, exhaustMap and tap operators of rxjs does in angular
 **Ans:**
-The take(1) operator instructs the observable to emit only the first value it encounters and then complete. After it receives and emits the first value, it automatically unsubscribes from the observable, preventing any further emissions.
-the map operator transforms the emitted value
-exhaustMap: It maps the source observable's value to another observable, but it only emits values from the inner observable while ignoring new values from the source until the inner observable completes.
-tap: It allows you to perform side effects (e.g., logging, debugging) on the source observable's values without affecting the values themselves, then passes them along unchanged.
+
+The **take(1)** operator instructs the observable to emit only the first value it encounters and then complete. After it receives and emits the first value, it automatically unsubscribes from the observable, preventing any further emissions.
+
+The **map** operator transforms the emitted value
+
+The **exhaustMap:** It maps the source observable's value to another observable, but it only emits values from the inner observable while ignoring new values from the source until the inner observable completes.
+
+The **tap:** It allows you to perform side effects (e.g., logging, debugging) on the source observable's values without affecting the values themselves, then passes them along unchanged.
 
 ## S.No 43 Explain 5 types of guards in Angular
 **Ans:** 
-CanActivate: Controls if a route can be activated.
-CanActivateChild: Controls if children of a route can be activated.
-CanDeactivate: Controls if a route can be deactivated.
-Resolve: Fetches necessary data before activating a route.
-CanLoad: Controls if a module can be loaded lazily.
+
+**CanActivate:** Controls if a route can be activated.
+
+**CanActivateChild:** Controls if children of a route can be activated.
+
+**CanDeactivate:** Controls if a route can be deactivated.
+
+**Resolve:** Fetches necessary data before activating a route.
+
+**CanLoad:** Controls if a module can be loaded lazily.
+
 
 ## S.No 44 How to setup web socket in angular
 **Ans:** 
-
 
 ```typescript
 // socket.service.ts
@@ -673,6 +683,5 @@ onSubmit() {
   }
 }
 ```
----
 
 ---
