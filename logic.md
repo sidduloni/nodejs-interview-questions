@@ -264,30 +264,24 @@ function pairElementsFunction(pairElements) {
 console.log("Pair Elements Result: ", pairElementsFunction(pairElements));
 ```
 
-## S.No 13 Count consecutive string count in a given string,  Input = 'arrouuppp' output = 'a1r2o1u2p3'
-**Ans**
+## S.No 13 Reverse string without using inbuilt function
+**Ans:** 
 ```javascript
-let consucativeString = 'arrouuppp';
-function consucativeFn(cStr) {
-let result = '';
-let count = 1;
-    for(let i=0; i< cStr.length; i++) {
-        if(cStr[i] === cStr[i+1]) {
-            count ++
-        } else {
-            result +=  cStr[i] + count
-            count = 1
-        }
-    }
-    return result
+let str = "Hello mini";
+
+let revStr = '';
+
+for(let i = str.length - 1; i >= 0; i--) {
+  revStr += str[i]
 }
 
-console.log("consecutive count of String: ", consucativeFn(consucativeString))
+console.log("Rev String: ", revStr) // Output: inim olleH
 ```
 
 ## S.No 14 Write Callback function and its promise function.
 **Ans**
 ```javascript
+// Normal callback function
 function asyncOperation(callback) {
     setTimeout(function() {
         callback("Callback executed");
@@ -299,18 +293,18 @@ function callbackFunc(message) {
 }
 asyncOperation(callbackFunc) // We will not use () here
 
+// Promise callback function
+  const myPromise = new Promise((resolve, reject) => {
+      setTimeout(function() {
+          resolve("Promise callback executed")
+      },4000)
+  })
 
-    const myPromise = new Promise((resolve, reject) => {
-        setTimeout(function() {
-            resolve("Promise callback executed")
-        },4000)
-    })
-
-    myPromise.then((result) => {
-        console.log("Promise resut: ", result)
-    }).catch((error) => {
-        console.log("promise error:", error)
-    })
+  myPromise.then((result) => {
+      console.log("Promise resut: ", result)
+  }).catch((error) => {
+      console.log("promise error:", error)
+  })
 ```
 
 ## S.No 15 Write Event emmiter example
@@ -401,4 +395,114 @@ function pcount(arr) {
 }
 
 console.log('Pair count: ', pcount([1, 2, 2, 3, 4, 1, 2, 3, 2, 1]))
+```
+
+## S. No 20 Check given string is pelindrome
+**Ans:**
+```javascript
+let str = 'ABCBA'
+function isPalindrome(str) {
+  let originalStr = str.replace(/[^A-Za-z0-9]/g, '')
+  let rev = originalStr.split('').reverse().join('');
+  if(rev === originalStr) {
+    return true
+  } else {
+    return false
+  }
+}
+console.log("Is pelindrome: ", isPalindrome(str))
+// OutPut: True/False
+```
+
+## S. No 21 Input = "SIDDUSIDDU" output = "S2I2D4U2"
+**Ans:**
+```javascript
+let str = 'SIDDUSIDDU';
+
+function changeStr(str) {
+  let emptyObj = {}
+  for(let val of str) {
+   if(val in emptyObj) {
+     emptyObj[val]++
+   } else {
+     emptyObj[val] = 1
+   }
+  }
+  console.log(emptyObj) // { S: 2, I: 2, D: 4, U: 2 }
+  let result = '';
+  for(let obj in emptyObj) {
+    result += obj + emptyObj[obj]
+  }
+  return result
+}
+
+console.log("Output: ", changeStr(str)) // S2I2D4U2
+```
+
+## S. No 22 Sort, remove dublicates with as well as without using inbuilt method, get max and 2nd max value
+**Ans:**
+```javascript 
+const str = [66, 88, 9, 32, 66, 9, 8]
+// Sort using sort()
+console.log(str.sort((a,b)=>a-b)) // [8,  9,  9, 32, 66, 66, 88]
+// remove dublicate using filter()
+console.log(str.filter((a,b)=> str.indexOf(a) === b)) // [ 8, 9, 32, 66, 88 ]
+// remove dublicate using Set()
+console.log([...new Set(str)]) // [ 8, 9, 32, 66, 88 ]
+// remove dublicate without method
+let removedDublicate = []
+for(let i=0; i< str.length; i++){
+  if(removedDublicate.indexOf(str[i]) === -1) {
+    removedDublicate.push(str[i])
+  }
+}
+console.log(removedDublicate) // [ 8, 9, 32, 66, 88 ]
+// Find the maximum value
+const maxValue = Math.max(...str);
+console.log('Maximum value:', maxValue); // 88
+
+// Remove the maximum value and find the second highest value
+const secondHighestValue = Math.max(...str.filter(item => item !== maxValue));
+console.log('Second highest value:', secondHighestValue); // 66
+```
+## S. No 23 Input "H#e#ll(o$p" Output "#2(1$1"
+**Ans:**
+```javascript
+let str = "H#e#ll(o$p";
+
+let empty = {}
+
+function isSpecialChar(char) {
+  return /[^a-z0-9]/gi.test(char)
+}
+for(let ob of str) {
+  if(isSpecialChar(ob)) {
+    empty[ob] = (empty[ob] || 0) + 1
+  }
+}
+let output = '';
+for(let ob in empty) {
+  output += ob + empty[ob]
+}
+console.log(output) // Output #2(1$1
+```
+
+## S. No 24 Find second largest number in a array
+**Ans:**
+```javascript
+let arr = [10, 5, 8, 3, 1];
+
+let largest = arr[0];
+let secondLargest = -Infinity; // Important
+
+for(let i= 1; i< arr.length; i++) {
+  if(arr[i] > largest) {
+    secondLargest = largest // Important
+    largest = arr[i]
+  } else if(arr[i] > secondLargest) {
+    secondLargest = arr[i]
+  }
+}
+
+console.log("2nd largest value: ", secondLargest) // Output 8
 ```
