@@ -506,3 +506,199 @@ for(let i= 1; i< arr.length; i++) {
 
 console.log("2nd largest value: ", secondLargest) // Output 8
 ```
+
+## S.No 25 Get only even number from given array
+**Ans:**
+```javascript
+let arr = [20, 15, 64, 26, 3, 7,9]
+
+let empty = []
+// using filter method
+function even(arr) {
+  return arr.filter((num) => num % 2 === 0)
+} // Output: [ 20, 64, 26 ]
+
+for(let i=0; i< arr.length; i++) {
+  if(arr[i] % 2 === 0) {
+    empty.push(arr[i])
+  }
+}
+
+console.log("Even num array:", empty) // Output: [ 20, 64, 26 ]
+```
+
+## S.No 26 Find factorial of given Number
+**Ans:**
+```javascript
+let n = 5;
+let num = 1
+// Using iteration - loop
+function fact(n) {
+  for(let i=1; i<=n; i++) {
+    num *= i // same as num = num * i
+  }
+  return num
+} // Output: 120
+
+// Using recurtion 
+function factorial(n) {
+  if(n === 0) {
+    return 1
+  } else {
+    return n * factorial(n-1)
+  }
+}
+console.log(fact(4)) // Output: 120
+```
+
+## S.No 27 Check if given number is prime or not
+**Ans:** Prime numbers are only divisible by 1 and themselves. A prime number is a positive integer greater than 1 that has exactly two factors, 1 and the number itself. For example, 2, 3, 5, 7, 11, and 13 are prime numbers. 
+Note: Prime numbers are essential to secure data encryption and decryption in cryptography
+
+```javascript
+let n = 6;
+function isPrime(n) {
+  for(let i=2; i<n; i++) { // Important i = 2 and i < n
+    if(n % i === 0 ) {
+      return "no"
+    }
+  }
+  return "yes"
+}
+console.log(`${n} Is Prime? `, isPrime(n))
+```
+
+## S.No 28  Find largest value from the nested array
+**Ans:**
+```javascript 
+let nestedArray = [
+  [88,8,3], [23, 45, 66], [2,3,8,57]
+  ];
+largest = nestedArray[0][0]
+for(let arr of nestedArray) {
+  for(let num of arr) {
+    if(num > largest) {
+      largest = num
+    }
+  }
+}
+console.log("Largest value from nested array: ", largest) // 88
+```
+
+## S.No 29 WAP to convert given string to title case
+**Ans:**
+```javascript 
+
+function toTitleCase(str) { 
+
+  return str.replace(/\b\w/g, l => l.toUpperCase()); 
+
+} 
+console.log("Title case: ", toTitleCase("hello dude")) // Output: Hello Dude
+```
+
+## S.No 30  WAP to return fibonacci series
+**Ans:**
+```javascript 
+
+function fibo(num) { 
+
+  let fibo = []
+  
+  for(let i= 0; i< num; i++) {
+    if(i > 1) {
+      fibo.push(fibo[i-1] + fibo[i-2] )
+    } else {
+      fibo.push(i)
+    }
+  }
+  return fibo
+} 
+console.log("Fibonacci series: ", fibo(8)) // [0, 1, 1, 2, 3, 5, 8, 13]
+
+// Using recurtion 
+function fibonacci(n) {
+  if (n <= 1) {
+    return n;
+  } else {
+    return fibonacci(n - 1) + fibonacci(n - 2);
+  }
+}
+for (var i = 0; i < 10; i++) { // Important - has to write for loop
+  console.log(fibonacci(i));
+}
+```
+
+## S.No 31 WAP to implement quick sort
+**Ans:**
+```javascript 
+function quickSort(arr) {
+    if (arr.length <= 1) {
+        return arr;
+    }
+
+    const pivot = arr[Math.floor(arr.length / 2)];
+    const left = [];
+    const right = [];
+
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] < pivot) {
+            left.push(arr[i]);
+        } else if (arr[i] > pivot) {
+            right.push(arr[i]);
+        }
+    }
+
+    return quickSort(left).concat([pivot], quickSort(right));
+}
+
+const arr = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5];
+console.log('Original array:', arr);
+const sortedArr = quickSort(arr);
+console.log('Sorted array:', sortedArr);
+```
+
+## S.No 32 Find dublicates and non dublicate values from the array
+**Ans:**
+```javascript
+
+let arr = [3,6,9,5,3,6]
+
+let dublicate = []
+
+let nonDublicate = []
+
+for(let i = 0; i<arr.length; i++) {
+  if(!nonDublicate.includes(arr[i])) {
+    nonDublicate.push(arr[i])
+  } else {
+    dublicate.push(arr[i])
+  }
+}
+
+console.log('du:', dublicate, 'non-du:', nonDublicate) // du: [ 3, 6 ] non-du: [ 3, 6, 9, 5 ]
+```
+
+## S.No 33 Given two strings check if its Anagram.
+**Ans:**
+```javascript
+let str1 = "Listen Me"
+let str2 = "Silent Em"
+
+function isAnagram(str1, str2) {
+  let lcStr1 = str1.replace(/\s/g, '').toLowerCase()
+  let lcStr2 = str2.replace(/\s/g, '').toLowerCase()
+  
+  let sortedStr1 = lcStr1.split('').sort().join('')
+  let sortedStr2 = lcStr2.split('').sort().join('')
+  
+  if(sortedStr1 === sortedStr2) {
+    return true
+  } else {
+    return false
+  }
+  
+}
+
+console.log("Is Anagram? ", isAnagram(str1, str2))
+```
