@@ -1,6 +1,7 @@
 [Go to Nodejs FAQs](https://github.com/sidduloni/nodejs-interview-questions)
 ----
 #Nodejs-logical-interview-questions
+#problem-solving-interview-questions-nodejs
 
 ## S.No 1: WAP to print 1-100 without using loop
 **Ans**
