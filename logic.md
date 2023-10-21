@@ -122,57 +122,53 @@ let result = repl.replace(/[a-z]+/gi, function(s){
 console.log(result)
 // Output yM @emoH
 ```
-
-
-## S.No 6: Input - noval(5)(3)() Output - 8. Write a program that can dynamically add numbers using anonymous functions when they are passed as arguments
-**Ans:**
-
-```javascript
-// Input noval(5)(3)()
-function noval(x) {
-    return function(y) {
-        return function() {
-            return x + y;
-        }
-    }
-}
-console.log(noval(5)(3)())  // Output 8
- 
-// Using dynamic method
-function x(...args) {
-  let sum = args.reduce((total, num) => total + num, 0);
-  
-  return function(...nextArgs) {
-    if (nextArgs.length === 0) {
-      return sum;
-    } else {
-      return x(sum, ...nextArgs);
-    }
-  };
-}
-
-console.log(x(1)(2)(6)()); // Output: 9 REMEMBER: Passing the empty ( ) is Imp!!
-```
-
-## S.No 7: Write a prototype similar to map in javascript
+## S.No 6 Input "H#e#ll(o$p" Output "#2(1$1"
 **Ans:**
 ```javascript
-Array.prototype.mup = function(callback) {
- let emptyArr = [];
- for (let i=0; i < this.length; i++) {
-   emptyArr.push(callback(this[i], i, this))
- }
- return emptyArr;
+let str = "H#e#ll(o$p";
+
+let empty = {}
+
+function isSpecialChar(char) {
+  return /[^a-z0-9]/gi.test(char)
+}
+for(let ob of str) {
+  if(isSpecialChar(ob)) {
+    empty[ob] = (empty[ob] || 0) + 1
+  }
+}
+let output = '';
+for(let ob in empty) {
+  output += ob + empty[ob]
+}
+console.log(output) // Output #2(1$1
+```
+## S.No 7 Input = "SIDDUSIDDU" output = "S2I2D4U2"
+**Ans:**
+```javascript
+let str = 'SIDDUSIDDU';
+
+function changeStr(str) {
+  let emptyObj = {}
+  for(let val of str) {
+   if(val in emptyObj) {
+     emptyObj[val]++
+   } else {
+     emptyObj[val] = 1
+   }
+  }
+  console.log(emptyObj) // { S: 2, I: 2, D: 4, U: 2 }
+  let result = '';
+  for(let obj in emptyObj) {
+    result += obj + emptyObj[obj]
+  }
+  return result
 }
 
-let sm = [3, 2]
-let ss = sm.mup((num) => num + num) // [ 6, 4 ]
-// let ss = sm.mup((num) => num.toString()) // [ '3', '2' ]
-// let ss = sm.mup((num, index) => num + index) // [ 3, 3 ]
-console.log(ss)
+console.log("Output: ", changeStr(str)) // S2I2D4U2
 ```
 
-## S.No 8: Write a async function which should wait until promise resolve
+## S.No 8 Write a async function which should wait until promise resolve
 **Ans:**
 ```javascript
 function one() {
@@ -208,7 +204,7 @@ console.log(4);
 // Function two executed
 ```
 
-## S.No 9: let nums = [22, 55, 2, 6] sort in ascending order without using inbuilt function in javascript
+## S.No 9 let nums = [22, 55, 2, 6] sort in ascending order without using inbuilt function in javascript
 **Ans:** 
 ```javascript
 let nums = [22, 55, 2, 6];
@@ -280,6 +276,18 @@ function pairElementsFunction(pairElements) {
   return pairResult;
 }
 console.log("Pair Elements Result: ", pairElementsFunction(pairElements));
+
+// Pair Elements Result:  {
+//   '1,2': 2,
+//   '2,5': 2,
+//   '5,8': 1,
+//   '8,11': 1,
+//   '11,1': 1,
+//   '2,6': 1,
+//   '6,2': 1,
+//   '5,11': 1,
+//   '11,2': 1
+// }
 ```
 
 ## S.No 13 Reverse string without using inbuilt function
@@ -342,34 +350,7 @@ console.log(msg);
 // Triggering myEvent
 eventEmitter.emit('myEvent', "First event");
 ```
-
-## S.No 16 Write a program to display 1 to 50 without using loop
-**Ans**
-```javascript
-function withoutLoopFn(start, end) {
-    if(start <= end) {
-        console.log("without using loop: ", start)
-        withoutLoopFn(start + 1, end) // Using recurtion
-    }
-}
-withoutLoopFn(1, 5)
-```
-
-## S.No 17 Write a program to display sum of square of an odd nos in javascript
-**Ans**
-```javascript
-let sumOfSquareArr = [1,2,3,4,5,6,7,8,9,10]
-let sumOfSquare = sumOfSquareArr.reduce((acc, cur)=> {
-    if(cur % 2 !== 0) {
-        return acc + cur ** 2
-    }
-    return acc
-}, 0)
-
-console.log("Square of sum of Odd numbers: ", sumOfSquare)
-```
-
-## S.No 17 Write a program to convert value to index
+## S.No 16 Write a program to convert value to index
 **Ans**
 ```javascript
 let vi = {a:2, c:4}
@@ -380,39 +361,7 @@ for(let obj in vi) {
 console.log('Value to index : ', emptyObj)
 ```
 
-## S.No 18 
-**Ans**
-```javascript
-
-```
-
-## S.No 19 Create pair of array element and get pair repeated count from array
-**Ans**
-```javascript
-function pcount(arr) {
-    let pairRes = {}
-    for(let i = 0; i< arr.length - 1; i++ ) {
-        const pair = [arr[i], arr[i+1]].toString()
-        pairRes[pair] = (pairRes[pair] || 0) + 1
-    }
-    return pairRes;
-}
-
-console.log('Pair count: ', pcount([1, 2, 2, 3, 4, 1, 2, 3, 2, 1]))
-
-// Output:
-// Pair count:  {
-//   '1,2': 2,
-//   '2,2': 1,
-//   '2,3': 2,
-//   '3,4': 1,
-//   '4,1': 1,
-//   '3,2': 1,
-//   '2,1': 1
-// }
-```
-
-## S.No 20 Check if the given string is a palindrome
+## S.No 17 Check if the given string is a palindrome
 **Ans:**
 ```javascript
 let str = 'ABCBA'
@@ -429,32 +378,26 @@ console.log("Is pelindrome: ", isPalindrome(str))
 // OutPut: True/False
 ```
 
-## S.No 21 Input = "SIDDUSIDDU" output = "S2I2D4U2"
+
+## S.No 18 Write a prototype similar to map in javascript
 **Ans:**
 ```javascript
-let str = 'SIDDUSIDDU';
-
-function changeStr(str) {
-  let emptyObj = {}
-  for(let val of str) {
-   if(val in emptyObj) {
-     emptyObj[val]++
-   } else {
-     emptyObj[val] = 1
-   }
-  }
-  console.log(emptyObj) // { S: 2, I: 2, D: 4, U: 2 }
-  let result = '';
-  for(let obj in emptyObj) {
-    result += obj + emptyObj[obj]
-  }
-  return result
+Array.prototype.mup = function(callback) {
+ let emptyArr = [];
+ for (let i=0; i < this.length; i++) {
+   emptyArr.push(callback(this[i], i, this))
+ }
+ return emptyArr;
 }
 
-console.log("Output: ", changeStr(str)) // S2I2D4U2
+let sm = [3, 2]
+let ss = sm.mup((num) => num + num) // [ 6, 4 ]
+// let ss = sm.mup((num) => num.toString()) // [ '3', '2' ]
+// let ss = sm.mup((num, index) => num + index) // [ 3, 3 ]
+console.log(ss)
 ```
 
-## S.No 22 Sort the list, remove duplicates both with and without using built-in methods, and find the maximum and second maximum values from the array
+## S.No 19 Sort the list, remove duplicates both with and without using built-in methods, and find the maximum and second maximum values from the array
 **Ans:**
 ```javascript 
 const str = [66, 88, 9, 32, 66, 9, 8]
@@ -481,29 +424,37 @@ const secondHighestValue = Math.max(...str.filter(item => item !== maxValue));
 console.log('Second highest value:', secondHighestValue); // 66
 ```
 
-## S.No 23 Input "H#e#ll(o$p" Output "#2(1$1"
+## S.No 20: Input - noval(5)(3)() Output - 8. Write a program that can dynamically add numbers using anonymous functions when they are passed as arguments
 **Ans:**
+
 ```javascript
-let str = "H#e#ll(o$p";
+// Input noval(5)(3)()
+function noval(x) {
+    return function(y) {
+        return function() {
+            return x + y;
+        }
+    }
+}
+console.log(noval(5)(3)())  // Output 8
+ 
+// Using dynamic method
+function x(...args) {
+  let sum = args.reduce((total, num) => total + num, 0);
+  
+  return function(...nextArgs) {
+    if (nextArgs.length === 0) {
+      return sum;
+    } else {
+      return x(sum, ...nextArgs);
+    }
+  };
+}
 
-let empty = {}
-
-function isSpecialChar(char) {
-  return /[^a-z0-9]/gi.test(char)
-}
-for(let ob of str) {
-  if(isSpecialChar(ob)) {
-    empty[ob] = (empty[ob] || 0) + 1
-  }
-}
-let output = '';
-for(let ob in empty) {
-  output += ob + empty[ob]
-}
-console.log(output) // Output #2(1$1
+console.log(x(1)(2)(6)()); // Output: 9 REMEMBER: Passing the empty ( ) is Imp!!
 ```
 
-## S.No 24 Find second largest number in a array
+## S.No 21 Find second largest number in a array
 **Ans:**
 ```javascript
 let arr = [10, 5, 8, 3, 1];
@@ -523,7 +474,7 @@ for(let i= 1; i< arr.length; i++) {
 console.log("2nd largest value: ", secondLargest) // Output 8
 ```
 
-## S.No 25 Get only even number from given array
+## S.No 22 Get only even number from given array
 **Ans:**
 ```javascript
 let arr = [20, 15, 64, 26, 3, 7,9]
@@ -543,7 +494,7 @@ for(let i=0; i< arr.length; i++) {
 console.log("Even num array:", empty) // Output: [ 20, 64, 26 ]
 ```
 
-## S.No 26 Find factorial of given Number
+## S.No 23 Find factorial of given Number
 **Ans:**
 ```javascript
 let n = 5;
@@ -567,7 +518,7 @@ function factorial(n) {
 console.log(fact(4)) // Output: 120
 ```
 
-## S.No 27 Check if given number is prime or not
+## S.No 24 Check if given number is prime or not
 **Ans:** Prime numbers are only divisible by 1 and themselves. A prime number is a positive integer greater than 1 that has exactly two factors, 1 and the number itself. For example, 2, 3, 5, 7, 11, and 13 are prime numbers. 
 Note: Prime numbers are essential to secure data encryption and decryption in cryptography
 
@@ -584,7 +535,7 @@ function isPrime(n) {
 console.log(`${n} Is Prime? `, isPrime(n))
 ```
 
-## S.No 28  Find largest value from the nested array
+## S.No 25  Find largest value from the nested array
 **Ans:**
 ```javascript 
 let nestedArray = [
@@ -601,7 +552,7 @@ for(let arr of nestedArray) {
 console.log("Largest value from nested array: ", largest) // 88
 ```
 
-## S.No 29 Write a program to convert given string to title case
+## S.No 26 Write a program to convert given string to title case
 **Ans:**
 ```javascript 
 
@@ -613,7 +564,7 @@ function toTitleCase(str) {
 console.log("Title case: ", toTitleCase("hello dude")) // Output: Hello Dude
 ```
 
-## S.No 30  Write a program to return fibonacci series
+## S.No 27  Write a program to return fibonacci series
 **Ans:**
 ```javascript 
 
@@ -645,7 +596,7 @@ for (var i = 0; i < 10; i++) { // Important - has to write for loop
 }
 ```
 
-## S.No 31 Write a program to implement quick sort
+## S.No 28 Write a program to implement quick sort
 **Ans:**
 ```javascript 
 function quickSort(arr) {
@@ -674,7 +625,7 @@ const sortedArr = quickSort(arr);
 console.log('Sorted array:', sortedArr);
 ```
 
-## S.No 32 Find dublicates and non dublicate values from the array
+## S.No 29 Find dublicates and non dublicate values from the array
 **Ans:**
 ```javascript
 
@@ -695,7 +646,7 @@ for(let i = 0; i<arr.length; i++) {
 console.log('du:', dublicate, 'non-du:', nonDublicate) // du: [ 3, 6 ] non-du: [ 3, 6, 9, 5 ]
 ```
 
-## S.No 33 Given two strings check if its Anagram.
+## S.No 30 Given two strings check if its Anagram.
 **Ans:**
 ```javascript
 let str1 = "Listen Me"
