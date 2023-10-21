@@ -3,7 +3,7 @@
 #Nodejs-logical-interview-questions
 #problem-solving-interview-questions-nodejs
 
-## S.No 1: WAP to print 1-100 without using loop
+## S.No 1: Write a program to print 1-100 without using loop
 **Ans**
 ```javascript
 function noLoop(start, end) {
@@ -15,7 +15,7 @@ function noLoop(start, end) {
   noLoop(1, 10)
 ```
 
-## S.No 2: WAP to display sum of square of an odd nos
+## S.No 2: Write a program to display sum of square of an odd numbers
 **Ans**
 ```javascript
 let a=[1,2,3,4,5,6,7,8,9,10]
@@ -31,7 +31,7 @@ console.log('Sum of squares of odd numbers:', sumOfSquaresOfOddNumbers);
 
 ```
 
-## S.No 3: Add 2 numbers using recursion 
+## S.No 3: Add two numbers using recursion 
 **Ans**
 ```javascript
 function add2(a,b) {
@@ -43,7 +43,7 @@ function add2(a,b) {
 console.log("Add Recursion :", add2(10,2))
 ```
 
-## S.No 4: merge two unsorted arrays into one sorted array with no duplicates
+## S.No 4: Merge two unsorted arrays into one sorted array with no duplicates and sort ascending order
 **Ans**
 ```javascript
 
@@ -124,10 +124,21 @@ console.log(result)
 ```
 
 
-## S.No 6: Dynamically passing the anonymous functions for sum 
+## S.No 6: Input - noval(5)(3)() Output - 8. Write a program that can dynamically add numbers using anonymous functions when they are passed as arguments
 **Ans:**
 
 ```javascript
+// Input noval(5)(3)()
+function noval(x) {
+    return function(y) {
+        return function() {
+            return x + y;
+        }
+    }
+}
+console.log(noval(5)(3)())  // Output 8
+ 
+// Using dynamic method
 function x(...args) {
   let sum = args.reduce((total, num) => total + num, 0);
   
@@ -143,7 +154,7 @@ function x(...args) {
 console.log(x(1)(2)(6)()); // Output: 9 REMEMBER: Passing the empty ( ) is Imp!!
 ```
 
-## S.No 7: No Write a prototype similar to map in javascript
+## S.No 7: Write a prototype similar to map in javascript
 **Ans:**
 ```javascript
 Array.prototype.mup = function(callback) {
@@ -157,7 +168,7 @@ Array.prototype.mup = function(callback) {
 let sm = [3, 2]
 let ss = sm.mup((num) => num + num) // [ 6, 4 ]
 // let ss = sm.mup((num) => num.toString()) // [ '3', '2' ]
-// let ss = sm.mup((num, indes) => num + indes) // [ 3, 3 ]
+// let ss = sm.mup((num, index) => num + index) // [ 3, 3 ]
 console.log(ss)
 ```
 
@@ -172,26 +183,32 @@ function delay() {
   return new Promise((resolve) => {
     setTimeout(() => {
       console.log('two');
-      resolve('Delay done');
+      resolve('Delay resolve');
     }, 0);
   });
 }
 
 async function two() {
-  await delay(); ** Until this promise resolve the one( ) wait then it runs**
-  one();
+  await delay().then((res)=>console.log(res));
+  one(); // This function waits until the delay() promise resolved. Note: Waits within the scope, but not outside methods, properties.
   return 'Function two executed';
 }
 
 console.log(3);
-two().then((result) => {
-  console.log(result);
-  
-});
+two().then((item)=>console.log(item))
 console.log(4);
+
+// Output:
+
+// 3
+// 4
+// two
+// Delay done
+// one
+// Function two executed
 ```
 
-## S.No 9: `let nums = [22, 55, 2, 6]` sort in ascending order without using inbuilt function in js
+## S.No 9: let nums = [22, 55, 2, 6] sort in ascending order without using inbuilt function in javascript
 **Ans:** 
 ```javascript
 let nums = [22, 55, 2, 6];
@@ -213,8 +230,8 @@ bubbleSort(nums);
 console.log("Sorted array in ascending order:", nums);
 ```
 
-## S. No 10 How to handle error without using try-catch
-**Ans:**
+## S.No 10 How to handle error without using try-catch
+**Ans:** Using promises reject callback method we can handle errors
 ```javascript
 
 async function check2(req, res) {
@@ -239,7 +256,7 @@ check.then((success) => {
 ```
 
 ## S. No 11  Swap two variables without using the 3rd variable
-**Ans**
+**Ans** Using array destructuring
 ```javascript
 let stringOne = "My home";
 let stringTwo = "You home";
@@ -279,7 +296,7 @@ for(let i = str.length - 1; i >= 0; i--) {
 console.log("Rev String: ", revStr) // Output: inim olleH
 ```
 
-## S.No 14 Write Callback function and its promise function.
+## S.No 14 Write callback function and its promise function.
 **Ans**
 ```javascript
 // Normal callback function
@@ -326,7 +343,7 @@ console.log(msg);
 eventEmitter.emit('myEvent', "First event");
 ```
 
-## S.No 16 WAP to display 1 to 50 without using loop
+## S.No 16 Write a program to display 1 to 50 without using loop
 **Ans**
 ```javascript
 function withoutLoopFn(start, end) {
@@ -338,7 +355,7 @@ function withoutLoopFn(start, end) {
 withoutLoopFn(1, 5)
 ```
 
-## S.No 17 WAP to display sum of square of an odd nos in javascript
+## S.No 17 Write a program to display sum of square of an odd nos in javascript
 **Ans**
 ```javascript
 let sumOfSquareArr = [1,2,3,4,5,6,7,8,9,10]
@@ -352,7 +369,7 @@ let sumOfSquare = sumOfSquareArr.reduce((acc, cur)=> {
 console.log("Square of sum of Odd numbers: ", sumOfSquare)
 ```
 
-## S.No 17 WAP to convert value to index
+## S.No 17 Write a program to convert value to index
 **Ans**
 ```javascript
 let vi = {a:2, c:4}
@@ -363,24 +380,10 @@ for(let obj in vi) {
 console.log('Value to index : ', emptyObj)
 ```
 
-## S.No 18 Given input -' abbbccddddaab' Print output - 'a1b3c2d4a2b1' consucative 
+## S.No 18 
 **Ans**
 ```javascript
-let theInputArr = 'abbbccddddaab';
-function consucative(arr) {
-    let result = '';
-    let count = 1;
-    for(let i = 0; i < arr.length; i++) {
-        if(arr[i] === arr[i+1]) {
-            count ++;
-        } else {
-            result += arr[i] + count
-            count = 1
-        }
-    }
-    return result
-}
-console.log('consucative : ', consucative(theInputArr))
+
 ```
 
 ## S.No 19 Create pair of array element and get pair repeated count from array
@@ -396,9 +399,20 @@ function pcount(arr) {
 }
 
 console.log('Pair count: ', pcount([1, 2, 2, 3, 4, 1, 2, 3, 2, 1]))
+
+// Output:
+// Pair count:  {
+//   '1,2': 2,
+//   '2,2': 1,
+//   '2,3': 2,
+//   '3,4': 1,
+//   '4,1': 1,
+//   '3,2': 1,
+//   '2,1': 1
+// }
 ```
 
-## S. No 20 Check given string is pelindrome
+## S.No 20 Check if the given string is a palindrome
 **Ans:**
 ```javascript
 let str = 'ABCBA'
@@ -415,7 +429,7 @@ console.log("Is pelindrome: ", isPalindrome(str))
 // OutPut: True/False
 ```
 
-## S. No 21 Input = "SIDDUSIDDU" output = "S2I2D4U2"
+## S.No 21 Input = "SIDDUSIDDU" output = "S2I2D4U2"
 **Ans:**
 ```javascript
 let str = 'SIDDUSIDDU';
@@ -440,7 +454,7 @@ function changeStr(str) {
 console.log("Output: ", changeStr(str)) // S2I2D4U2
 ```
 
-## S. No 22 Sort, remove dublicates with as well as without using inbuilt method, get max and 2nd max value
+## S.No 22 Sort the list, remove duplicates both with and without using built-in methods, and find the maximum and second maximum values from the array
 **Ans:**
 ```javascript 
 const str = [66, 88, 9, 32, 66, 9, 8]
@@ -466,7 +480,8 @@ console.log('Maximum value:', maxValue); // 88
 const secondHighestValue = Math.max(...str.filter(item => item !== maxValue));
 console.log('Second highest value:', secondHighestValue); // 66
 ```
-## S. No 23 Input "H#e#ll(o$p" Output "#2(1$1"
+
+## S.No 23 Input "H#e#ll(o$p" Output "#2(1$1"
 **Ans:**
 ```javascript
 let str = "H#e#ll(o$p";
@@ -488,7 +503,7 @@ for(let ob in empty) {
 console.log(output) // Output #2(1$1
 ```
 
-## S. No 24 Find second largest number in a array
+## S.No 24 Find second largest number in a array
 **Ans:**
 ```javascript
 let arr = [10, 5, 8, 3, 1];
@@ -519,12 +534,12 @@ function even(arr) {
   return arr.filter((num) => num % 2 === 0)
 } // Output: [ 20, 64, 26 ]
 
+// Using loop
 for(let i=0; i< arr.length; i++) {
   if(arr[i] % 2 === 0) {
     empty.push(arr[i])
   }
 }
-
 console.log("Even num array:", empty) // Output: [ 20, 64, 26 ]
 ```
 
@@ -586,7 +601,7 @@ for(let arr of nestedArray) {
 console.log("Largest value from nested array: ", largest) // 88
 ```
 
-## S.No 29 WAP to convert given string to title case
+## S.No 29 Write a program to convert given string to title case
 **Ans:**
 ```javascript 
 
@@ -598,7 +613,7 @@ function toTitleCase(str) {
 console.log("Title case: ", toTitleCase("hello dude")) // Output: Hello Dude
 ```
 
-## S.No 30  WAP to return fibonacci series
+## S.No 30  Write a program to return fibonacci series
 **Ans:**
 ```javascript 
 
@@ -630,7 +645,7 @@ for (var i = 0; i < 10; i++) { // Important - has to write for loop
 }
 ```
 
-## S.No 31 WAP to implement quick sort
+## S.No 31 Write a program to implement quick sort
 **Ans:**
 ```javascript 
 function quickSort(arr) {
