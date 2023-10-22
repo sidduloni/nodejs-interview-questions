@@ -3,7 +3,146 @@
 #Nodejs-logical-interview-questions
 #problem-solving-interview-questions-nodejs
 
-## S.No 1: Write a program to print 1-100 without using loop
+
+## S.No 1 Write callback function and its promise function.
+**Ans**
+```javascript
+// Normal callback function
+function asyncOperation(callback) {
+    setTimeout(function() {
+        callback("Callback executed");
+    }, 3000)
+}
+
+function callbackFunc(message) {
+    console.log(message)
+}
+asyncOperation(callbackFunc) // We will not use () here
+
+// Promise callback function
+  const myPromise = new Promise((resolve, reject) => {
+      setTimeout(function() {
+          resolve("Promise callback executed")
+      },4000)
+  })
+
+  myPromise.then((result) => {
+      console.log("Promise resut: ", result)
+  }).catch((error) => {
+      console.log("promise error:", error)
+  })
+```
+
+## S.No 2 Write Event emmiter example
+**Ans**
+```javascript
+
+const EventEmitter = require('events');
+
+// Initializing event emitter instances
+var eventEmitter = new EventEmitter();
+
+// Registering to myEvent
+eventEmitter.on('myEvent', (msg) => {
+console.log(msg);
+});
+
+// Triggering myEvent
+eventEmitter.emit('myEvent', "First event");
+```
+
+## S.No 3 How to handle error without using try-catch
+**Ans:** Using promises reject callback method we can handle errors
+```javascript
+
+async function check2(req, res) {
+  try {
+    const a = await functionA();
+    const b = await functionB();
+    res.send("result")
+  } catch (error) {
+    res.send(error.stack);
+  }
+}
+
+const check = new Promise((resolve, reject) => {
+ return reject("Error encountered!");
+}) 
+
+check.then((success) => {
+  console.log("If success")
+}).catch((error)=> {
+  console.log(error);
+})
+```
+
+## S.No 4 Write a async function which should wait until promise resolve
+**Ans:**
+```javascript
+function one() {
+  console.log("one");
+}
+
+function delay() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      console.log('two');
+      resolve('Delay resolve');
+    }, 0);
+  });
+}
+
+async function two() {
+  await delay().then((res)=>console.log(res));
+  one(); // This function waits until the delay() promise resolved. Note: Waits within the scope, but not outside methods, properties.
+  return 'Function two executed';
+}
+
+console.log(3);
+two().then((item)=>console.log(item))
+console.log(4);
+
+// Output:
+
+// 3
+// 4
+// two
+// Delay done
+// one
+// Function two executed
+```
+
+## S.No 5 Write a prototype similar to map in javascript
+**Ans:**
+```javascript
+Array.prototype.mup = function(callback) {
+ let emptyArr = [];
+ for (let i=0; i < this.length; i++) {
+   emptyArr.push(callback(this[i], i, this))
+ }
+ return emptyArr;
+}
+
+let sm = [3, 2]
+let ss = sm.mup((num) => num + num) // [ 6, 4 ]
+// let ss = sm.mup((num) => num.toString()) // [ '3', '2' ]
+// let ss = sm.mup((num, index) => num + index) // [ 3, 3 ]
+console.log(ss)
+```
+
+## S.No 6 Write a program to convert given string to title case
+**Ans:**
+```javascript 
+
+function toTitleCase(str) { 
+
+  return str.replace(/\b\w/g, l => l.toUpperCase()); 
+
+} 
+console.log("Title case: ", toTitleCase("hello dude")) // Output: Hello Dude
+```
+
+## S.No 7: Write a program to print 1-100 without using loop
 **Ans**
 ```javascript
 function noLoop(start, end) {
@@ -15,7 +154,7 @@ function noLoop(start, end) {
   noLoop(1, 10)
 ```
 
-## S.No 2: Write a program to display sum of square of an odd numbers
+## S.No 8: Write a program to display sum of square of an odd numbers
 **Ans**
 ```javascript
 let a=[1,2,3,4,5,6,7,8,9,10]
@@ -31,7 +170,7 @@ console.log('Sum of squares of odd numbers:', sumOfSquaresOfOddNumbers);
 
 ```
 
-## S.No 3: Add two numbers using recursion 
+## S.No 9: Add two numbers using recursion 
 **Ans**
 ```javascript
 function add2(a,b) {
@@ -43,7 +182,7 @@ function add2(a,b) {
 console.log("Add Recursion :", add2(10,2))
 ```
 
-## S.No 4: Merge two unsorted arrays into one sorted array with no duplicates and sort ascending order
+## S.No 10: Merge two unsorted arrays into one sorted array with no duplicates and sort ascending order
 **Ans**
 ```javascript
 
@@ -81,7 +220,7 @@ for(let i=0; i < sortedArray.length; i++) {
 console.log(sortedArray)
 ```
 
-## S.No 5:  Given a string, that contains a special character together with alphabets (‘a’ to ‘z’ and ‘A’ to ‘Z’), reverse the string in a way that special characters are not affected.
+## S.No 11:  Given a string, that contains a special character together with alphabets (‘a’ to ‘z’ and ‘A’ to ‘Z’), reverse the string in a way that special characters are not affected.
 **Ans**
 ```javascript
 // Input:   str = “a,b$c”
@@ -122,7 +261,19 @@ let result = repl.replace(/[a-z]+/gi, function(s){
 console.log(result)
 // Output yM @emoH
 ```
-## S.No 6 Input "H#e#ll(o$p" Output "#2(1$1"
+
+## S.No 12 Write a program to convert value to index
+**Ans**
+```javascript
+let vi = {a:2, c:4}
+let emptyObj = {}
+for(let obj in vi) {
+    emptyObj[vi[obj]] = obj
+}
+console.log('Value to index : ', emptyObj)
+```
+
+## S.No 13 Input "H#e#ll(o$p" Output "#2(1$1"
 **Ans:**
 ```javascript
 let str = "H#e#ll(o$p";
@@ -143,7 +294,8 @@ for(let ob in empty) {
 }
 console.log(output) // Output #2(1$1
 ```
-## S.No 7 Input = "SIDDUSIDDU" output = "S2I2D4U2"
+
+## S.No 14 Input = "SIDDUSIDDU" output = "S2I2D4U2"
 **Ans:**
 ```javascript
 let str = 'SIDDUSIDDU';
@@ -168,43 +320,7 @@ function changeStr(str) {
 console.log("Output: ", changeStr(str)) // S2I2D4U2
 ```
 
-## S.No 8 Write a async function which should wait until promise resolve
-**Ans:**
-```javascript
-function one() {
-  console.log("one");
-}
-
-function delay() {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      console.log('two');
-      resolve('Delay resolve');
-    }, 0);
-  });
-}
-
-async function two() {
-  await delay().then((res)=>console.log(res));
-  one(); // This function waits until the delay() promise resolved. Note: Waits within the scope, but not outside methods, properties.
-  return 'Function two executed';
-}
-
-console.log(3);
-two().then((item)=>console.log(item))
-console.log(4);
-
-// Output:
-
-// 3
-// 4
-// two
-// Delay done
-// one
-// Function two executed
-```
-
-## S.No 9 let nums = [22, 55, 2, 6] sort in ascending order without using inbuilt function in javascript
+## S.No 15 let nums = [22, 55, 2, 6] sort in ascending order without using inbuilt function in javascript
 **Ans:** 
 ```javascript
 let nums = [22, 55, 2, 6];
@@ -226,32 +342,7 @@ bubbleSort(nums);
 console.log("Sorted array in ascending order:", nums);
 ```
 
-## S.No 10 How to handle error without using try-catch
-**Ans:** Using promises reject callback method we can handle errors
-```javascript
-
-async function check2(req, res) {
-  try {
-    const a = await functionA();
-    const b = await functionB();
-    res.send("result")
-  } catch (error) {
-    res.send(error.stack);
-  }
-}
-
-const check = new Promise((resolve, reject) => {
- return reject("Error encountered!");
-}) 
-
-check.then((success) => {
-  console.log("If success")
-}).catch((error)=> {
-  console.log(error);
-})
-```
-
-## S. No 11  Swap two variables without using the 3rd variable
+## S. No 16  Swap two variables without using the 3rd variable
 **Ans** Using array destructuring
 ```javascript
 let stringOne = "My home";
@@ -262,7 +353,7 @@ let stringTwo = "You home";
 console.log("String One: ", stringOne);
 ```
 
-## S.No 12 Take pair of array element list and count their pair occurence
+## S.No 17 Take pair of array element list and count their pair occurence
 **Ans**
 ```javascript
 let pairElements = [1, 2, 5, 8, 11, 1, 2, 6, 2, 5, 11, 2];
@@ -290,7 +381,7 @@ console.log("Pair Elements Result: ", pairElementsFunction(pairElements));
 // }
 ```
 
-## S.No 13 Reverse string without using inbuilt function
+## S.No 18 Reverse string without using inbuilt function
 **Ans:** 
 ```javascript
 let str = "Hello mini";
@@ -304,127 +395,7 @@ for(let i = str.length - 1; i >= 0; i--) {
 console.log("Rev String: ", revStr) // Output: inim olleH
 ```
 
-## S.No 14 Write callback function and its promise function.
-**Ans**
-```javascript
-// Normal callback function
-function asyncOperation(callback) {
-    setTimeout(function() {
-        callback("Callback executed");
-    }, 3000)
-}
-
-function callbackFunc(message) {
-    console.log(message)
-}
-asyncOperation(callbackFunc) // We will not use () here
-
-// Promise callback function
-  const myPromise = new Promise((resolve, reject) => {
-      setTimeout(function() {
-          resolve("Promise callback executed")
-      },4000)
-  })
-
-  myPromise.then((result) => {
-      console.log("Promise resut: ", result)
-  }).catch((error) => {
-      console.log("promise error:", error)
-  })
-```
-
-## S.No 15 Write Event emmiter example
-**Ans**
-```javascript
-
-const EventEmitter = require('events');
-
-// Initializing event emitter instances
-var eventEmitter = new EventEmitter();
-
-// Registering to myEvent
-eventEmitter.on('myEvent', (msg) => {
-console.log(msg);
-});
-
-// Triggering myEvent
-eventEmitter.emit('myEvent', "First event");
-```
-## S.No 16 Write a program to convert value to index
-**Ans**
-```javascript
-let vi = {a:2, c:4}
-let emptyObj = {}
-for(let obj in vi) {
-    emptyObj[vi[obj]] = obj
-}
-console.log('Value to index : ', emptyObj)
-```
-
-## S.No 17 Check if the given string is a palindrome
-**Ans:**
-```javascript
-let str = 'ABCBA'
-function isPalindrome(str) {
-  let originalStr = str.replace(/[^A-Za-z0-9]/g, '')
-  let rev = originalStr.split('').reverse().join('');
-  if(rev === originalStr) {
-    return true
-  } else {
-    return false
-  }
-}
-console.log("Is pelindrome: ", isPalindrome(str))
-// OutPut: True/False
-```
-
-
-## S.No 18 Write a prototype similar to map in javascript
-**Ans:**
-```javascript
-Array.prototype.mup = function(callback) {
- let emptyArr = [];
- for (let i=0; i < this.length; i++) {
-   emptyArr.push(callback(this[i], i, this))
- }
- return emptyArr;
-}
-
-let sm = [3, 2]
-let ss = sm.mup((num) => num + num) // [ 6, 4 ]
-// let ss = sm.mup((num) => num.toString()) // [ '3', '2' ]
-// let ss = sm.mup((num, index) => num + index) // [ 3, 3 ]
-console.log(ss)
-```
-
-## S.No 19 Sort the list, remove duplicates both with and without using built-in methods, and find the maximum and second maximum values from the array
-**Ans:**
-```javascript 
-const str = [66, 88, 9, 32, 66, 9, 8]
-// Sort using sort()
-console.log(str.sort((a,b)=>a-b)) // [8,  9,  9, 32, 66, 66, 88]
-// remove dublicate using filter()
-console.log(str.filter((a,b)=> str.indexOf(a) === b)) // [ 8, 9, 32, 66, 88 ]
-// remove dublicate using Set()
-console.log([...new Set(str)]) // [ 8, 9, 32, 66, 88 ]
-// remove dublicate without method
-let removedDublicate = []
-for(let i=0; i< str.length; i++){
-  if(removedDublicate.indexOf(str[i]) === -1) {
-    removedDublicate.push(str[i])
-  }
-}
-console.log(removedDublicate) // [ 8, 9, 32, 66, 88 ]
-// Find the maximum value
-const maxValue = Math.max(...str);
-console.log('Maximum value:', maxValue); // 88
-
-// Remove the maximum value and find the second highest value
-const secondHighestValue = Math.max(...str.filter(item => item !== maxValue));
-console.log('Second highest value:', secondHighestValue); // 66
-```
-
-## S.No 20: Input - noval(5)(3)() Output - 8. Write a program that can dynamically add numbers using anonymous functions when they are passed as arguments
+## S.No 19: Input - noval(5)(3)() Output - 8. Write a program that can dynamically add numbers using anonymous functions when they are passed as arguments
 **Ans:**
 
 ```javascript
@@ -454,7 +425,93 @@ function x(...args) {
 console.log(x(1)(2)(6)()); // Output: 9 REMEMBER: Passing the empty ( ) is Imp!!
 ```
 
-## S.No 21 Find second largest number in a array
+## S.No 20 Check if the given string is a palindrome
+**Ans:**
+```javascript
+let str = 'ABCBA'
+function isPalindrome(str) {
+  let originalStr = str.replace(/[^A-Za-z0-9]/g, '')
+  let rev = originalStr.split('').reverse().join('');
+  if(rev === originalStr) {
+    return true
+  } else {
+    return false
+  }
+}
+console.log("Is pelindrome: ", isPalindrome(str))
+// OutPut: True/False
+```
+## S.No 21 Given two strings check if its Anagram.
+**Ans:**
+```javascript
+let str1 = "Listen Me"
+let str2 = "Silent Em"
+
+function isAnagram(str1, str2) {
+  let lcStr1 = str1.replace(/\s/g, '').toLowerCase()
+  let lcStr2 = str2.replace(/\s/g, '').toLowerCase()
+  
+  let sortedStr1 = lcStr1.split('').sort().join('')
+  let sortedStr2 = lcStr2.split('').sort().join('')
+  
+  if(sortedStr1 === sortedStr2) {
+    return true
+  } else {
+    return false
+  }
+  
+}
+
+console.log("Is Anagram? ", isAnagram(str1, str2))
+```
+
+## S.No 22 Sort the list, remove duplicates both with and without using built-in methods, and find the maximum and second maximum values from the array
+**Ans:**
+```javascript 
+const str = [66, 88, 9, 32, 66, 9, 8]
+// Sort using sort()
+console.log(str.sort((a,b)=>a-b)) // [8,  9,  9, 32, 66, 66, 88]
+// remove dublicate using filter()
+console.log(str.filter((a,b)=> str.indexOf(a) === b)) // [ 8, 9, 32, 66, 88 ]
+// remove dublicate using Set()
+console.log([...new Set(str)]) // [ 8, 9, 32, 66, 88 ]
+// remove dublicate without method
+let removedDublicate = []
+for(let i=0; i< str.length; i++){
+  if(removedDublicate.indexOf(str[i]) === -1) {
+    removedDublicate.push(str[i])
+  }
+}
+console.log(removedDublicate) // [ 8, 9, 32, 66, 88 ]
+// Find the maximum value
+const maxValue = Math.max(...str);
+console.log('Maximum value:', maxValue); // 88
+
+// Remove the maximum value and find the second highest value
+const secondHighestValue = Math.max(...str.filter(item => item !== maxValue));
+console.log('Second highest value:', secondHighestValue); // 66
+```
+
+## S.No 23 Get only even number from given array
+**Ans:**
+```javascript
+let arr = [20, 15, 64, 26, 3, 7,9]
+
+let empty = []
+// using filter method
+function even(arr) {
+  return arr.filter((num) => num % 2 === 0)
+} // Output: [ 20, 64, 26 ]
+
+// Using loop
+for(let i=0; i< arr.length; i++) {
+  if(arr[i] % 2 === 0) {
+    empty.push(arr[i])
+  }
+}
+console.log("Even num array:", empty) // Output: [ 20, 64, 26 ]
+```
+## S.No 24 Find second largest number in a array
 **Ans:**
 ```javascript
 let arr = [10, 5, 8, 3, 1];
@@ -474,27 +531,45 @@ for(let i= 1; i< arr.length; i++) {
 console.log("2nd largest value: ", secondLargest) // Output 8
 ```
 
-## S.No 22 Get only even number from given array
+## S.No 25  Find largest value from the nested array
 **Ans:**
-```javascript
-let arr = [20, 15, 64, 26, 3, 7,9]
-
-let empty = []
-// using filter method
-function even(arr) {
-  return arr.filter((num) => num % 2 === 0)
-} // Output: [ 20, 64, 26 ]
-
-// Using loop
-for(let i=0; i< arr.length; i++) {
-  if(arr[i] % 2 === 0) {
-    empty.push(arr[i])
+```javascript 
+let nestedArray = [
+  [88,8,3], [23, 45, 66], [2,3,8,57]
+  ];
+largest = nestedArray[0][0]
+for(let arr of nestedArray) {
+  for(let num of arr) {
+    if(num > largest) {
+      largest = num
+    }
   }
 }
-console.log("Even num array:", empty) // Output: [ 20, 64, 26 ]
+console.log("Largest value from nested array: ", largest) // 88
 ```
 
-## S.No 23 Find factorial of given Number
+## S.No 26 Find dublicates and non dublicate values from the array
+**Ans:**
+```javascript
+
+let arr = [3,6,9,5,3,6]
+
+let dublicate = []
+
+let nonDublicate = []
+
+for(let i = 0; i<arr.length; i++) {
+  if(!nonDublicate.includes(arr[i])) {
+    nonDublicate.push(arr[i])
+  } else {
+    dublicate.push(arr[i])
+  }
+}
+
+console.log('du:', dublicate, 'non-du:', nonDublicate) // du: [ 3, 6 ] non-du: [ 3, 6, 9, 5 ]
+```
+
+## S.No 27 Find factorial of given Number
 **Ans:**
 ```javascript
 let n = 5;
@@ -518,7 +593,7 @@ function factorial(n) {
 console.log(fact(4)) // Output: 120
 ```
 
-## S.No 24 Check if given number is prime or not
+## S.No 28 Check if given number is prime or not
 **Ans:** Prime numbers are only divisible by 1 and themselves. A prime number is a positive integer greater than 1 that has exactly two factors, 1 and the number itself. For example, 2, 3, 5, 7, 11, and 13 are prime numbers. 
 Note: Prime numbers are essential to secure data encryption and decryption in cryptography
 
@@ -535,36 +610,7 @@ function isPrime(n) {
 console.log(`${n} Is Prime? `, isPrime(n))
 ```
 
-## S.No 25  Find largest value from the nested array
-**Ans:**
-```javascript 
-let nestedArray = [
-  [88,8,3], [23, 45, 66], [2,3,8,57]
-  ];
-largest = nestedArray[0][0]
-for(let arr of nestedArray) {
-  for(let num of arr) {
-    if(num > largest) {
-      largest = num
-    }
-  }
-}
-console.log("Largest value from nested array: ", largest) // 88
-```
-
-## S.No 26 Write a program to convert given string to title case
-**Ans:**
-```javascript 
-
-function toTitleCase(str) { 
-
-  return str.replace(/\b\w/g, l => l.toUpperCase()); 
-
-} 
-console.log("Title case: ", toTitleCase("hello dude")) // Output: Hello Dude
-```
-
-## S.No 27  Write a program to return fibonacci series
+## S.No 29  Write a program to return fibonacci series
 **Ans:**
 ```javascript 
 
@@ -596,7 +642,7 @@ for (var i = 0; i < 10; i++) { // Important - has to write for loop
 }
 ```
 
-## S.No 28 Write a program to implement quick sort
+## S.No 30 Write a program to implement quick sort
 **Ans:**
 ```javascript 
 function quickSort(arr) {
@@ -625,47 +671,6 @@ const sortedArr = quickSort(arr);
 console.log('Sorted array:', sortedArr);
 ```
 
-## S.No 29 Find dublicates and non dublicate values from the array
-**Ans:**
-```javascript
 
-let arr = [3,6,9,5,3,6]
 
-let dublicate = []
 
-let nonDublicate = []
-
-for(let i = 0; i<arr.length; i++) {
-  if(!nonDublicate.includes(arr[i])) {
-    nonDublicate.push(arr[i])
-  } else {
-    dublicate.push(arr[i])
-  }
-}
-
-console.log('du:', dublicate, 'non-du:', nonDublicate) // du: [ 3, 6 ] non-du: [ 3, 6, 9, 5 ]
-```
-
-## S.No 30 Given two strings check if its Anagram.
-**Ans:**
-```javascript
-let str1 = "Listen Me"
-let str2 = "Silent Em"
-
-function isAnagram(str1, str2) {
-  let lcStr1 = str1.replace(/\s/g, '').toLowerCase()
-  let lcStr2 = str2.replace(/\s/g, '').toLowerCase()
-  
-  let sortedStr1 = lcStr1.split('').sort().join('')
-  let sortedStr2 = lcStr2.split('').sort().join('')
-  
-  if(sortedStr1 === sortedStr2) {
-    return true
-  } else {
-    return false
-  }
-  
-}
-
-console.log("Is Anagram? ", isAnagram(str1, str2))
-```
