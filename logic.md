@@ -112,9 +112,10 @@ console.log(4);
 // Function two executed
 ```
 
-## S.No 5 Write a prototype similar to map in javascript
+## S.No 5 Write a prototype or polyfill similar to map, reduce and filter in javascript
 **Ans:**
 ```javascript
+// Map polyfill
 Array.prototype.mup = function(callback) {
  let emptyArr = [];
  for (let i=0; i < this.length; i++) {
@@ -124,10 +125,39 @@ Array.prototype.mup = function(callback) {
 }
 
 let sm = [3, 2]
-let ss = sm.mup((num) => num + num) // [ 6, 4 ]
-// let ss = sm.mup((num) => num.toString()) // [ '3', '2' ]
-// let ss = sm.mup((num, index) => num + index) // [ 3, 3 ]
-console.log(ss)
+let result = sm.mup((num) => num + num) // [ 6, 4 ]
+// let result = sm.mup((num) => num.toString()) // [ '3', '2' ]
+// let result = sm.mup((num, index) => num + index) // [ 3, 3 ]
+console.log(result)
+
+// Reduce polyfill
+Array.prototype.myReducer = function(cb, initialValue) {
+    let accumulator = initialValue;
+    for (i = 0; i < this.length; i++) {
+        accumulator = accumulator ? cb(this[i], i, this) : this[i];
+    }
+    return accumulator;
+};
+const arr1 = [2, 3, 4, 5];
+const sumOfArray = arr1.myReducer((accu, curr, index, arr) => {
+    return (accu += curr);
+}, 0);
+console.log("polyfil", sumOfArray);
+
+// Filter prototype
+Array.prototype.myFilter = function (cb) {
+  let temp = [];
+  for (let i = 0; i < this.length; i++) {
+    if (cb(this[i], i, this)) temp.push(cb(this[i]));
+  }
+  return temp;
+};
+const arr = [2, 3, 4, 5];
+console.log("arr", arr);
+const data = arr.filter((num) => {
+  return num > 2;
+});
+console.log("Filter Result", data);
 ```
 
 ## S.No 6 Write a program to convert given string to title case
