@@ -79,7 +79,7 @@ Examples **Sementic ** include `<header>`, `<footer>`, `<nav>`, `<section>`, and
 
 
 ## S.No 10: How will you avoid built-in form validation in HTML?
-**Ans:** To avoid built-in form validation, use the 'novalidate' attribute in the <form> tag. This disables the browser's default form validation, allowing you to implement custom validation using JavaScript.
+**Ans:** To avoid built-in form validation, use the 'novalidate' attribute in the form tag. This disables the browser's default form validation, allowing you to implement custom validation using JavaScript.
 ```html
 <form novalidate>
 ...
