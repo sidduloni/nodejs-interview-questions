@@ -79,7 +79,12 @@ Examples **Sementic ** include `<header>`, `<footer>`, `<nav>`, `<section>`, and
 
 
 ## S.No 10: How will you avoid built-in form validation in HTML?
-**Ans:** To avoid built-in form validation, use the \`novalidate\` attribute in the \`<form>\` tag. This disables the browser's default form validation, allowing you to implement custom validation using JavaScript.
+**Ans:** To avoid built-in form validation, use the 'novalidate' attribute in the <form> tag. This disables the browser's default form validation, allowing you to implement custom validation using JavaScript.
+```html
+<form novalidate>
+...
+</form>
+```
 
 ## S.No 11: How to place a div at the center of another div?
 **Ans:** To center a `<div>` within another `<div>`, you can use CSS properties like `position`, `top`, `left`, and `transform`. Set `position: absolute` on the inner `<div>` and use `top: 50%; left: 50%; transform: translate(-50%, -50%);` to center it.
@@ -180,11 +185,13 @@ const EventEmitter = require('events');
 
 const myEmitter = new EventEmitter();
 
-myEmitter.on('greet', ( ) => {
-  console.log('Hello, world!');
+myEmitter.on('greet', (msg) => {
+  console.log(msg);
 });
 
-myEmitter.emit('greet');
+myEmitter.emit('greet', 'Event emitted! message here');
+// Output - Event emitted! message here
+
 ```
 
 ## S.No 28: Buffers in nodejs with example
