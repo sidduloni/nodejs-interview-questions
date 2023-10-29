@@ -134,7 +134,7 @@ console.log(result)
 Array.prototype.myReducer = function(cb, initialValue) {
     let accumulator = initialValue;
     for (i = 0; i < this.length; i++) {
-        accumulator = accumulator ? cb(this[i], i, this) : this[i];
+        accumulator = accumulator ? cb(accumulator, this[i], i, this) : this[i];
     }
     return accumulator;
 };
