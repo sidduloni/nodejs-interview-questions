@@ -751,7 +751,7 @@ module.exports = function (req, res, next) {
 
 ```
 
-## S.No 48 Explain how encryption and description of password we implement in nodejs
+## S.No 48 Explain how encryption and decryption of password we implement in nodejs
 **Ans**
 ```javascript
 const bcrypt = require("bcryptjs");
