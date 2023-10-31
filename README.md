@@ -720,7 +720,7 @@ onSubmit() {
 }
 ```
 
-## S.No 47 Explain how do we authenticate nodejs app or how to implement JWT or JsonWebToken.
+## S.No 47 Explain how to authenticate a Node.js app with JWT (JsonWebToken)
 **Ans**
 ```javascript
 // We create a separate file jwt.js
