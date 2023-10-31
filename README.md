@@ -720,4 +720,49 @@ onSubmit() {
 }
 ```
 
+## S.No 47 Explain how do we authenticate nodejs app or how to implement JWT or JsonWebToken.
+**Ans**
+```javascript
+// We create a separate file jwt.js
+
+const jwt = require('jsonwebtoken');
+
+module.exports = function (req, res, next) {
+  console.log(req.headers);
+  const authHeader = req.headers['authorization'];
+  if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    return res.status(401).send({ auth: false, message: 'No token provided.' });
+  }
+
+  const token = authHeader.split('Bearer ')[1];
+  jwt.verify(token, process.env.JWT_SECRET, function (err, decoded) {
+    if (err)
+      return res
+        .status(500)
+        .send({ auth: false, message: 'Failed to authenticate token.' });
+    req.userId = decoded.id;
+    // console.log('jwt ', req.userId)
+    next();
+  });
+};
+
+// In login.js file we generate the token 
+ const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET);
+
+```
+
+## S.No 48 Explain how encryption and description of password we implement in nodejs
+**Ans**
+```javascript
+const bcrypt = require("bcryptjs");
+
+// In registration we has the password 
+let salt = await bcrypt.genSalt(10);
+password = await bcrypt.hash(password, salt);
+
+// In login we compare the hassed password
+bcrypt.compare(password, user.password)
+
+```
+
 ---
