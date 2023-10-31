@@ -529,8 +529,37 @@ The **tap:** It allows you to perform side effects (e.g., logging, debugging) on
 
 **CanLoad:** Controls if a module can be loaded lazily.
 
+## S.No 44 How to implement real-time chatting using Socket.io in nodejs
+**Ans***
+```javascript
+// In app.js root file of your nodejs import socket.io package
+const http = require("http")
 
-## S.No 44 How to setup web socket in angular
+const httpServer = http.createServer()
+
+const socketio = require("socket.io")
+
+const io = socketio.Server(httpServer)
+
+io.on('connection', (socket)=> {
+    socket.on('join', (room) => {
+        socket.join(room)
+    })
+
+    socket.on("chat", (data) => {
+        const { room, msg, senderId, type, time, msgId } = JSON.parse(data);
+        socket.broadcast.to(room).emit("receive", { msg, senderId, type, time, msgId });
+      });
+...
+    socket.io('disconnect', () => {
+        socket.emit("offlineStatus")
+    })
+        
+})
+
+```
+
+## S.No 45 How to setup web socket in angular
 **Ans:** 
 
 ```typescript
@@ -641,7 +670,7 @@ The **tap:** It allows you to perform side effects (e.g., logging, debugging) on
    export class AppComponent { }
    ```
 
-## S.No 45 No Write example for Reactive form in angular
+## S.No 46 Write example for Reactive form in angular
 **Ans:**
 ```typescript
 
