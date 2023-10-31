@@ -756,7 +756,7 @@ module.exports = function (req, res, next) {
 ```javascript
 const bcrypt = require("bcryptjs");
 
-// In registration we has the password 
+// In registration we hash the password 
 let salt = await bcrypt.genSalt(10);
 password = await bcrypt.hash(password, salt);
 
