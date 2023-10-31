@@ -765,4 +765,71 @@ bcrypt.compare(password, user.password)
 
 ```
 
+## S.No 49 Write mongodb queries for CRUD and joining collection and search query.
+**Ans**
+```javascript
+const User = require('./userModel');
+const Client = require('./clientModel'); 
+
+// 1. Insert a User
+const newUser = new User({ name: 'John' });
+newUser.save();
+
+// using insertOne
+User.insertOne({
+		First_Name: "Radhika",
+		Last_Name: "Sharma"
+	})
+
+// Using insertMany
+User.insertMany([{...}, {...}]) // Or simgply use User.insert
+
+// 2. Edit a User
+User.findByIdAndUpdate(userId, { name: 'Updated Name' }, { new: true });
+
+// 3. Update a User
+User.updateOne({ _id: userId }, { age: 30 }); // Use User.updateMany for many
+
+// 4. Delete a User
+User.findByIdAndRemove(userId);
+
+// 5. Aggregate Users by Age
+User.aggregate([{ $group: { _id: '$age', count: { $sum: 1 } } }]);
+
+// 6. Search Users with Skip and Limit
+User.find({ age: { $gte: 25 } }, {username: 1}).skip(10).limit(5); // We use projection in the 2nd parameter
+
+// We can use "findOne" 
+
+// 7. Join Users and Clients using Populate and Aggregate
+// Using Aggregate
+User.aggregate([
+  {
+    $lookup: {
+      from: 'clients', // Assuming the collection name for clients is 'clients'
+      localField: '_id',
+      foreignField: 'userId',
+      as: 'userClients',
+    },
+  },
+]);
+
+// Using Populate
+User.findOne({ _id: userId })
+  .populate({
+      path: "clientId",
+      select: "_id fullName profilePic username"
+    });
+
+Note: To use populate we must add "ref" is other collection schema definition.
+
+Example: Add ref in the client schema's definition userId field.
+
+userId: {
+      type: mongoose.Schema.Types.ObjectId, // Type is important
+      ref: "User", // This is important to use populate
+      required: true,
+    },
+
+```
 ---
