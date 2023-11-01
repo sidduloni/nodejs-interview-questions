@@ -832,4 +832,44 @@ userId: {
     },
 
 ```
+
+## S.No 50 Explain object and array destructuring in javascript
+**Ans** 
+- **Array Destructuring:** Array destructuring is a feature in JavaScript that allows you to extract values from an array and assign them to variables in a single, concise statement. It provides an easy way to work with individual elements of an array by specifying which elements you want to destructure and assign to variables.
+- **Object Destructuring:** Object destructuring is a feature in JavaScript that enables you to extract values from an object and assign them to variables using a simple and intuitive syntax. It allows you to access and work with specific properties of an object by specifying the property names, making your code more readable and organized.
+```javascript
+// Basic Array Destructuring:
+const colors = ['red', 'green', 'blue'];
+const [first, second, third] = colors;
+
+console.log(first);  // Output: 'red'
+console.log(second); // Output: 'green'
+console.log(third);  // Output: 'blue'
+
+// Skipping Elements in Array Destructuring:
+const numbers = [1, 2, 3, 4, 5];
+const [first, , third] = numbers;
+
+console.log(first);  // Output: 1
+console.log(third);  // Output: 3
+
+// Basic Object Destructuring:
+const person = { firstName: 'John', lastName: 'Doe', age: 30 };
+const { firstName, lastName, age } = person;
+
+console.log(firstName);  // Output: 'John'
+console.log(lastName);   // Output: 'Doe'
+console.log(age);        // Output: 30
+
+// Renaming Variables in Object Destructuring:
+const user = { name: 'Alice', email: 'alice@example.com' };
+const { name: fullName, email: userEmail } = user;
+
+console.log(fullName);  // Output: 'Alice'
+console.log(userEmail); // Output: 'alice@example.com'
+
+```
+## S.No 51 What is Absctract class in javascript 
+**Ans** Absctract class contains one or more abstract methods within it. An abstract method is a method that can only be declared but has no implementation to it.
+
 ---
