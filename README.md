@@ -905,10 +905,160 @@ In Angular, you can communicate between components in several ways, depending on
 6. Router and Query Parameters:
    - You can pass data between components using route parameters or query parameters when navigating between routes.
 
-**7. NgRx/Redux:**
+7. NgRx/Redux:
    - For managing complex state and communication in large Angular applications, you can use NgRx, which implements the Redux pattern.
    - This provides a centralized store and actions for communication and **state management.**
 
 For more complex scenarios or inter-component communication, **services** and **observables** may be a better choice.
+
+Examples:
+
+1. Event Emitters and Observables:
+   - Using RxJS Observables to communicate between components:
+
+     Service with an Observable:
+     ```typescript
+     import { Injectable } from '@angular/core';
+     import { BehaviorSubject } from 'rxjs';
+
+     @Injectable()
+     export class DataService {
+       private messageSource = new BehaviorSubject<string>('Initial message');
+       currentMessage = this.messageSource.asObservable();
+
+       changeMessage(message: string) {
+         this.messageSource.next(message);
+       }
+     }
+     ```
+
+     Component 1:
+     ```typescript
+     import { Component, OnInit } from '@angular/core';
+     import { DataService } from './data.service';
+
+     @Component({
+       selector: 'app-component1',
+       template: `
+         <p>{{ message }}</p>
+       `
+     })
+     export class Component1 implements OnInit {
+       message: string;
+
+       constructor(private dataService: DataService) {}
+
+       ngOnInit() {
+         this.dataService.currentMessage.subscribe(message => this.message = message);
+       }
+     }
+     ```
+
+     Component 2:
+     ```typescript
+     import { Component } from '@angular/core';
+     import { DataService } from './data.service';
+
+     @Component({
+       selector: 'app-component2',
+       template: `
+         <button (click)="updateData()">Update Data</button>
+       `
+     })
+     export class Component2 {
+       constructor(private dataService: DataService) {}
+
+       updateData() {
+         this.dataService.changeMessage('New message from Component 2');
+       }
+     }
+     ```
+
+2. @ViewChild and @ViewChildren:
+   - Accessing child components from a parent component:
+
+     Parent Component:
+     ```typescript
+     import { Component, ViewChild } from '@angular/core';
+     import { ChildComponent } from './child.component';
+
+     @Component({
+       selector: 'app-parent',
+       template: `
+         <app-child></app-child>
+         <button (click)="callChildMethod()">Call Child Method</button>
+       `
+     })
+     export class ParentComponent {
+       @ViewChild(ChildComponent) child: ChildComponent;
+
+       callChildMethod() {
+         this.child.childMethod();
+       }
+     }
+     ```
+
+     Child Component:
+     ```typescript
+     import { Component } from '@angular/core';
+
+     @Component({
+       selector: 'app-child',
+       template: `
+         <p>Child Component</p>
+       `
+     })
+     export class ChildComponent {
+       childMethod() {
+         console.log('Child method called');
+       }
+     }
+     ```
+
+3. @Input and @Output Decorators:
+   - Parent to Child (Input) and Child to Parent (Output):
+
+     Parent Component:
+     ```typescript
+     import { Component } from '@angular/core';
+
+     @Component({
+       selector: 'app-parent',
+       template: `
+         <app-child [message]="parentMessage" (messageEvent)="receiveMessage($event)"></app-child>
+         <p>{{ receivedMessage }}</p>
+       `
+     })
+     export class ParentComponent {
+       parentMessage = 'Message from parent';
+       receivedMessage: string;
+
+       receiveMessage(message: string) {
+         this.receivedMessage = message;
+       }
+     }
+     ```
+
+     Child Component:
+     ```typescript
+     import { Component, Input, Output, EventEmitter } from '@angular/core';
+
+     @Component({
+       selector: 'app-child',
+       template: `
+         <p>{{ message }}</p>
+         <button (click)="sendMessage()">Send Message</button>
+       `
+     })
+     export class ChildComponent {
+       @Input() message: string;
+       @Output() messageEvent = new EventEmitter<string>();
+
+       sendMessage() {
+         this.messageEvent.emit('Message from child');
+       }
+     }
+     ```
+
 
 ---
