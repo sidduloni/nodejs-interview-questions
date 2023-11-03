@@ -701,6 +701,23 @@ const sortedArr = quickSort(arr);
 console.log('Sorted array:', sortedArr);
 ```
 
+## S.No 31 Given nested object obj = {'a': {'b': 'Hello', c: {'d': 'World'}}}, find its keys. The output should be array of keys - ['a', 'b', 'c', 'd']
+**Ans**
 
+```javascript
+function getAllKeys(obj) {
+  let keys = [];
+  for (let key in obj) {
+    keys.push(key);
+    if (typeof obj[key] === 'object') {
+      keys = keys.concat(getAllKeys(obj[key]));
+    }
+  }
+  return keys;
+}
 
+const obj = {'a': {'b': 'Hello', 'c': {'d': 'World'}}};
+const keys = getAllKeys(obj);
+console.log(keys); // Output: ['a', 'b', 'c', 'd']
+```
 
