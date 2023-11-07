@@ -1060,5 +1060,41 @@ Examples:
      }
      ```
 
+  
+## S.No 54 Types of Middlewares in Node.js
+**Ans**
+   In Node.js, there are three main types of middlewares:
+   - Application-level middleware: Used for tasks that affect the entire application.
+   - Router-level middleware: Applied to specific routes.
+   - Error-handling middleware: Handles errors in your application.
+
+## S.No 55 Pseudo-class in CSS with an example
+**Ans** Pseudo-classes in CSS are used to define special states or behaviors of elements. An example of the `:hover` pseudo-class:
+   ```css
+   a:hover {
+       color: red; /* When you hover over a link, it turns red. */
+   }
+   ```
+
+## S.No 56 Explain `Promise.any` and `Promise.all`
+**Ans**
+   - `Promise.any`: Resolves when at least one promise from an iterable resolves. If all promises are rejected, it's rejected.
+   - `Promise.all`: Resolves when all promises in the iterable resolve. If any promise is rejected, the whole `Promise.all` is rejected.
+
+## S.No 57 Explain why we use Indexing in MongoDB
+**Ans** Indexing in MongoDB is used to improve query performance. You can create indexes on specific fields in a collection to make queries faster. For example, to create an index on the "email" field in a "users" collection:
+   ```javascript
+   db.users.createIndex({ email: 1 });
+   ```
+
+## S.No 58 Explain Call, Bind, Apply in JavaScript
+**Ans**
+
+   - `call`: Invokes a function with a specific `this` context and arguments. Example: `func.call(thisArg, arg1, arg2)`.
+   - `bind`: Creates a new function with a fixed `this` context, but doesn't invoke it immediately. Example: `const boundFunc = func.bind(thisArg)`.
+   - `apply`: Similar to `call`, but takes arguments as an array. Example: `func.apply(thisArg, [arg1, arg2])`.
+
+
+
 
 ---
