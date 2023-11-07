@@ -1090,9 +1090,19 @@ Examples:
 ## S.No 58 Explain Call, Bind, Apply in JavaScript
 **Ans**
 
-   - `call`: Invokes a function with a specific `this` context and arguments. Example: `func.call(thisArg, arg1, arg2)`.
-   - `bind`: Creates a new function with a fixed `this` context, but doesn't invoke it immediately. Example: `const boundFunc = func.bind(thisArg)`.
-   - `apply`: Similar to `call`, but takes arguments as an array. Example: `func.apply(thisArg, [arg1, arg2])`.
+   - `call`: Invokes a function with a specific `this` context and arguments.
+   - ```javascript
+    Example: `func.call(thisArg, arg1, arg2)`.
+    ```
+    
+   - `bind`: Creates a new function with a fixed `this` context, but doesn't invoke it immediately.
+    ```javascript
+    Example: `const boundFunc = func.bind(thisArg)`.
+    ```
+   - `apply`: Similar to `call`, but takes arguments as an array.
+```javascript
+     Example: `func.apply(thisArg, [arg1, arg2])`.
+      ```
 
 
 
