@@ -1110,7 +1110,33 @@ db.users.createIndex({ email: 1 });
   Example: `func.apply(thisArg, [arg1, arg2])`.
   ```
 
+## S.No 59 Explain ES6 features
+**Ans** 
+ES6, or ECMAScript 2015, introduced several features to enhance JavaScript. Here are some key additions:
 
+1. **let and const**: `let` allows you to declare block-scoped variables, and `const` is used for constants with block scope.
+
+2. **Arrow Functions**: A concise syntax for writing anonymous functions, making code more readable.
+
+3. **Template Literals**: String interpolation using backticks (\`), allowing multiline strings and embedded expressions.
+
+4. **Destructuring Assignment**: Enables extracting values from arrays or objects and assigning them to variables in a more compact way.
+
+5. **Default Parameters**: You can now assign default values to function parameters.
+
+6. **Rest and Spread Operators**: The `...` syntax is used for both rest parameters in functions and spreading elements of an iterable (like an array) into another.
+
+7. **Classes**: A more concise syntax for creating constructor functions and prototypes, making object-oriented programming in JavaScript cleaner.
+
+8. **Promises**: An improvement over callbacks, promises simplify asynchronous programming.
+
+9. **Modules**: ES6 introduced a standardized module system, making it easier to organize and reuse code.
+
+10. **Symbol**: A new primitive data type for creating unique identifiers.
+
+11. **Map and Set**: These are new data structures that provide more efficient alternatives to arrays and objects for certain use cases.
+
+12. **Iterators and Generators**: Improved ways to iterate over data structures and create iterable objects.
 
 
 ---
