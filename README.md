@@ -1138,5 +1138,22 @@ ES6, or ECMAScript 2015, introduced several features to enhance JavaScript. Here
 
 12. **Iterators and Generators**: Improved ways to iterate over data structures and create iterable objects.
 
+## S.No 60 Explain Zone.js in Angular
+**Ans** 
+- Zone.js is a library that helps Angular manage the execution context and handle asynchronous operations in a more predictable way.
+- Zones allow Angular to know when asynchronous tasks **start** and **finish**, helping to trigger **change detection** at the right times.
+
+## S.No 61 What is a state function in Angular
+**Ans** State function is used for Animation in angular
+- Angular's state() function is used to define different states to call at the end of each transition
+- This function takes two arguments: a unique name like **open** or **closed** and a **style() function**.
+
+```javascript
+state('open', style({
+  height: '300px',
+  opacity: 0.5,
+  backgroundColor: 'blue'
+})),
+```
 
 ---
