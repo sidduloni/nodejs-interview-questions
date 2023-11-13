@@ -1165,6 +1165,67 @@ state('open', style({
 - Complexity
 - Error handling
 
+## S.No 63 Explain Unit testing in nodejs
+**Ans**
+Unit testing is a software testing technique where individual units or components of a software application are tested in isolation. In Node.js, unit testing is commonly done using testing frameworks like **Mocha, Jest, or Jasmine,** along with assertion libraries like Chai or Node.js' built-in `assert` module.
 
+Here's a small example using Mocha and Chai for a simple Node.js function:
+
+1. First, install Mocha and Chai using npm:
+
+```bash
+npm install --save-dev mocha chai
+```
+
+2. Create a simple Node.js function in a file, let's say `math.js`:
+
+```javascript
+// math.js
+function add(a, b) {
+  return a + b;
+}
+
+module.exports = { add };
+```
+
+3. Create a test file, for example, `test.js`:
+
+```javascript
+// test.js
+const { expect } = require('chai');
+const { add } = require('./math');
+
+describe('Math operations', () => {
+  it('should add two numbers correctly', () => {
+    const result = add(2, 3);
+    expect(result).to.equal(5);
+  });
+
+  it('should handle negative numbers', () => {
+    const result = add(-2, 3);
+    expect(result).to.equal(1);
+  });
+});
+```
+
+4. Run the tests using Mocha. You can add a script in your `package.json` for convenience:
+
+```json
+{
+  "scripts": {
+    "test": "mocha"
+  }
+}
+```
+
+Then run:
+
+```bash
+npm test
+```
+
+This will execute your tests, and if everything is implemented correctly, you should see output indicating that the tests have passed.
+
+In this example, we have a simple `add` function in `math.js`, and we've written tests for it in the `test.js` file using Mocha and Chai. The tests check whether the `add` function correctly adds two numbers and handles negative numbers.
 
 ---
