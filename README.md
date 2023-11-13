@@ -1158,4 +1158,13 @@ state('open', style({
 })),
 ```
 
+## S.No 62 Disadvantages of using promises
+**Ans** 
+- Lack of support in older browsers
+- Memory leaks: If not handled properly, Promises can cause memory leaks.
+- Complexity
+- Error handling
+
+
+
 ---
