@@ -116,7 +116,7 @@ console.log(4);
 **Ans:**
 ```javascript
 // Map polyfill
-Array.prototype.mup = function(callback) {
+Array.prototype.myMap = function(callback) {
  let emptyArr = [];
  for (let i=0; i < this.length; i++) {
    emptyArr.push(callback(this[i], i, this))
@@ -125,9 +125,9 @@ Array.prototype.mup = function(callback) {
 }
 
 let sm = [3, 2]
-let result = sm.mup((num) => num + num) // [ 6, 4 ]
-// let result = sm.mup((num) => num.toString()) // [ '3', '2' ]
-// let result = sm.mup((num, index) => num + index) // [ 3, 3 ]
+let result = sm.myMap((num) => num + num) // [ 6, 4 ]
+// let result = sm.myMap((num) => num.toString()) // [ '3', '2' ]
+// let result = sm.myMap((num, index) => num + index) // [ 3, 3 ]
 console.log(result)
 
 // Filter prototype
@@ -180,7 +180,7 @@ arr.myForEach(function (element, index, array) {
 
 ```
 
-## S.No 6 Write a program to convert given string to title case
+## S.No 6 Write a program to convert first letter uppercase for the given string
 **Ans:**
 ```javascript 
 
@@ -192,7 +192,7 @@ function toTitleCase(str) {
 console.log("Title case: ", toTitleCase("hello dude")) // Output: Hello Dude
 ```
 
-## S.No 7: Write a program to print 1-100 without using loop
+## S.No 7: Write a program to print 1-10 without using loop
 **Ans**
 ```javascript
 function noLoop(start, end) {
@@ -491,6 +491,7 @@ function isPalindrome(str) {
 console.log("Is pelindrome: ", isPalindrome(str))
 // OutPut: True/False
 ```
+
 ## S.No 21 Given two strings check if its Anagram.
 **Ans:**
 ```javascript
@@ -521,10 +522,13 @@ console.log("Is Anagram? ", isAnagram(str1, str2))
 const str = [66, 88, 9, 32, 66, 9, 8]
 // Sort using sort()
 console.log(str.sort((a,b)=>a-b)) // [8,  9,  9, 32, 66, 66, 88]
+
 // remove dublicate using filter()
 console.log(str.filter((a,b)=> str.indexOf(a) === b)) // [ 8, 9, 32, 66, 88 ]
+
 // remove dublicate using Set()
 console.log([...new Set(str)]) // [ 8, 9, 32, 66, 88 ]
+
 // remove dublicate without method
 let removedDublicate = []
 for(let i=0; i< str.length; i++){
@@ -533,6 +537,7 @@ for(let i=0; i< str.length; i++){
   }
 }
 console.log(removedDublicate) // [ 8, 9, 32, 66, 88 ]
+
 // Find the maximum value
 const maxValue = Math.max(...str);
 console.log('Maximum value:', maxValue); // 88
@@ -540,6 +545,7 @@ console.log('Maximum value:', maxValue); // 88
 // Remove the maximum value and find the second highest value
 const secondHighestValue = Math.max(...str.filter(item => item !== maxValue));
 console.log('Second highest value:', secondHighestValue); // 66
+
 ```
 
 ## S.No 23 Get only even number from given array
@@ -560,7 +566,9 @@ for(let i=0; i< arr.length; i++) {
   }
 }
 console.log("Even num array:", empty) // Output: [ 20, 64, 26 ]
+
 ```
+
 ## S.No 24 Find second largest number in a array
 **Ans:**
 ```javascript
@@ -717,6 +725,7 @@ function quickSort(arr) {
 
 const arr = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5];
 console.log('Original array:', arr);
+
 const sortedArr = quickSort(arr);
 console.log('Sorted array:', sortedArr);
 ```
@@ -728,9 +737,10 @@ console.log('Sorted array:', sortedArr);
 function getAllKeys(obj) {
   let keys = [];
   for (let key in obj) {
-    keys.push(key);
     if (typeof obj[key] === 'object') {
       keys = keys.concat(getAllKeys(obj[key]));
+    } else {
+      keys.push(key);
     }
   }
   return keys;
@@ -739,5 +749,134 @@ function getAllKeys(obj) {
 const obj = {'a': {'b': 'Hello', 'c': {'d': 'World'}}};
 const keys = getAllKeys(obj);
 console.log(keys); // Output: ['a', 'b', 'c', 'd']
+```
+
+## S.No 32 Coping from one object to other object how do you do it, for example const obj = {x:4} so the output should be obb2 = {name:xy, x:4}
+**Ans**
+- Using spread oporator
+```javascript
+const obj1 = { x: 4 };
+const obj2 = { name: 'xy', ...obj1 };
+// Output : {name: 'xy, x: 4}
+```
+
+- Using Object.assign() method
+```javascript
+const obj1 = { x: 4 };
+const obj2 = {name: 'xy'}
+const result = Object.assign(obj1, obj2)
+// Output : {name: 'xy, x: 4}
+```
+
+## S.No 33 Reformat given object
+**Ans**
+```javascript
+var x = [{
+   name : "Ram",
+   age : 25,
+   number : 987654321
+}]
+
+const output = x.reduce((result, item) => {
+  result[item.name] = { age: item.age, number: item.number };
+  return result;
+}, {});
+
+Output:
+{
+  "Ram": {
+    age : 25,
+    number : 987654321
+  }
+```
+
+## S.No 34 What are different ways to deep copy an array of objects:
+**Ans**
+- Using spread operator `...`
+- Using Json parse : `JSON.parse(JSON.stringify(arr))`
+
+
+## S.No 35 Give example for Promise solving callback hell
+**Ans**
+async function example() {
+  try {
+    const result1 = await asyncFunction1();
+    const result2 = await asyncFunction2(result1);
+    const result3 = await asyncFunction3(result2);
+    console.log(result3);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+## S.No 36 Write a program to transform an array into an object with 'name' as key using normal and reduce methods:
+**Ans**
+```javascript
+var a = [
+  { "name": "abc", "phone": 1234 },
+  { "name": "abcd", "phone": 12345 },
+  { "name": "abcde", "phone": 123456 }
+];
+
+1) Using a for loop:
+
+var outputNormal = {};
+for (let item of a) {
+  outputNormal[item.name] = { phone: item.phone };
+}
+
+2) Using reduce method
+
+var outputReduce = a.reduce((result, item) => {
+  result[item.name] = { phone: item.phone };
+  return result;
+}, {});
+
+```
+
+## S.No 37 Explain below questions
+**Ans**
+```html
+   1. can you iterate an object using for of loop?
+      Ans : No
+ 
+   2. Does callback is used to achieve synchronous or asynchronous flow?
+      Ans: Asynchronous flow
+ 
+   3. what is the typeof null?
+      Ans: Object
+ 
+   4. what is the function of delete operator?
+      Ans: Delete operator is used to delete the object property and its value
+  
+   5. How do you push any elements to beginning of the array?
+      Ans: Using unshift method
+   
+   6. How do you find if an object is empty?
+      Ans: using this syntax Object.keys(object).length == 0
+
+```
+
+## S.No 38 List out ES6 features
+**Ans**
+- let and const
+- Arrow Functions
+- Template Literals
+- Destructuring Assignment
+- Default Parameters
+- Rest and Spread Operators
+- Classes
+- Promises
+- Modules
+- Symbol
+- Map and Set
+- Iterators and Generators
+
+## S.No 39 Given input let arr = [undefined, 11, 'test', 0, { key: 'test'}, [1, null, 'test', {}], {}, [], null, "", NaN, false, true] 
+           exclude:  undefined, null, [], {}, NaN
+**Ans**
+```javascript
+
+
 ```
 
