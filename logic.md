@@ -798,6 +798,7 @@ Output:
 
 ## S.No 35 Give example for Promise solving callback hell
 **Ans**
+```javascript
 async function example() {
   try {
     const result1 = await asyncFunction1();
@@ -808,6 +809,7 @@ async function example() {
     console.error(error);
   }
 }
+```
 
 ## S.No 36 Write a program to transform an array into an object with 'name' as key using normal and reduce methods:
 **Ans**
@@ -872,8 +874,8 @@ var outputReduce = a.reduce((result, item) => {
 - Map and Set
 - Iterators and Generators
 
-## S.No 39 Given input let arr = [undefined, 11, 'test', 0, { key: 'test'}, [1, null, 'test', {}], {}, [], null, "", NaN, false, true] 
-           exclude:  undefined, null, [], {}, NaN
+## S.No 39 Given input let arr = [undefined, 11, 'test', 0, { key: 'test'}, [1, null, 'test', {}], {}, [], null, "", NaN, false, true] from this exclude:  undefined, null, [], {}, NaN
+           
 **Ans**
 ```javascript
 
