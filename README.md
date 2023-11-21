@@ -1060,6 +1060,29 @@ Examples:
      }
      ```
 
+## Simple example:
+```javascript
+app-parent.ts:
+
+receivedChildMessage: string;
+getMessage(message: string) {
+    this.receivedChildMessage = message;
+}
+app-parent.html
+
+<app-child (messageToEmit)="getMessage($event)"></app-child>  
+app-child.ts:
+
+@Output() messageToEmit = new EventEmitter<string>();
+
+sendMessageToParent(message: string) {
+    this.messageToEmit.emit(message)
+}
+app-child.html:
+
+<button (click)="sendMessageToParent(messageToSendC)">Send to Parent</button>
+```
+
 ## S.No 54 Types of Middlewares in Node.js
 **Ans**
 Types of middlewares:
