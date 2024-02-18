@@ -239,6 +239,8 @@ console.log("Add Recursion :", add2(10,2))
 let arr1 = [2, 6, 44, 12, 34, 44]
 let arr2 = [90, 55, 22, 4, 1, 55, 8]
 
+// Or simply use let merged = [...arr1, ...arr2]
+
 let sortedArray = [];
 let countOfArray = arr1.length + arr2.length
 console.log(countOfArray)
@@ -247,7 +249,6 @@ for(let i = 0; i< arr1.length; i++) {
   if(!sortedArray.includes(arr1[i])) {
     sortedArray.push(arr1[i])
   }
-  
 }
 
 for(let i = 0; i< arr2.length; i++) {
@@ -348,18 +349,13 @@ console.log(output) // Output #2(1$1
 ## S.No 14 Input = "SIDDUSIDDU" output = "S2I2D4U2"
 **Ans:**
 ```javascript
-let str = 'SIDDUSIDDU';
+let input = 'SIDDUSIDDU';
+let tmp = {}
+for(let ob of input) {
+  tmp[ob] = (tmp[ob] || 0) + 1
+}
+ console.log(tmp) // { S: 2, I: 2, D: 4, U: 2 }
 
-function changeStr(str) {
-  let emptyObj = {}
-  for(let val of str) {
-   if(val in emptyObj) {
-     emptyObj[val]++
-   } else {
-     emptyObj[val] = 1
-   }
-  }
-  console.log(emptyObj) // { S: 2, I: 2, D: 4, U: 2 }
   let result = '';
   for(let obj in emptyObj) {
     result += obj + emptyObj[obj]
@@ -445,7 +441,8 @@ for(let i = str.length - 1; i >= 0; i--) {
 console.log("Rev String: ", revStr) // Output: inim olleH
 ```
 
-## S.No 19: Input - noval(5)(3)() Output - 8. Write a program that can dynamically add numbers using anonymous functions when they are passed as arguments
+## S.No 19: Input - noval(5)(3)() Output - 8. 
+Write a program that can dynamically add numbers using anonymous functions when they are passed as arguments
 **Ans:**
 
 ```javascript
@@ -640,6 +637,8 @@ function fact(n) {
   return num
 } // Output: 120
 
+Eg: 1*2*3*5 = 120
+
 // Using recurtion 
 function factorial(n) {
   if(n === 0) {
@@ -649,6 +648,7 @@ function factorial(n) {
   }
 }
 console.log(fact(4)) // Output: 120
+
 ```
 
 ## S.No 28 Check if given number is prime or not
@@ -737,11 +737,10 @@ console.log('Sorted array:', sortedArr);
 function getAllKeys(obj) {
   let keys = [];
   for (let key in obj) {
+    keys.push(key);
     if (typeof obj[key] === 'object') {
       keys = keys.concat(getAllKeys(obj[key]));
-    } else {
-      keys.push(key);
-    }
+    }    
   }
   return keys;
 }
