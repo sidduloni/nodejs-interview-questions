@@ -357,8 +357,8 @@ for(let ob of input) {
  console.log(tmp) // { S: 2, I: 2, D: 4, U: 2 }
 
   let result = '';
-  for(let obj in emptyObj) {
-    result += obj + emptyObj[obj]
+  for(let obj in tmp) {
+    result += obj + tmp[obj]
   }
   return result
 }
@@ -441,8 +441,8 @@ for(let i = str.length - 1; i >= 0; i--) {
 console.log("Rev String: ", revStr) // Output: inim olleH
 ```
 
-## S.No 19: Input - noval(5)(3)() Output - 8. 
-Write a program that can dynamically add numbers using anonymous functions when they are passed as arguments
+## S.No 19: Input - noval(5)(3)() Output - 8. Write a program that can dynamically add numbers using anonymous functions when they are passed as arguments
+
 **Ans:**
 
 ```javascript
