@@ -124,8 +124,25 @@ Examples **Sementic ** include `<header>`, `<footer>`, `<nav>`, `<section>`, and
 - \`display: none\` hides the element completely, removing it from the layout and making it occupy no space.
 - \`visibility: hidden\` hides the element, but it still takes up space as if it were visible.
 
-## S.No 13: What is the entry point of an Angular application?  
-**Ans:** The entry point of an Angular application is typically the \`main.ts\` file. This file bootstraps the Angular application by calling \`platformBrowserDynamic().bootstrapModule(AppModule)\`.
+## S.No 13: List React Hooks  
+**Ans:** 
+1. useState
+2. useEffect
+3. useReducer
+4. useContext
+5. useRef
+6. useCallback
+7. useMemo
+8. useLayoutEffect
+9. useDebugValue
+10. useImperativeHandle
+
+    Other Hooks:
+11. useId
+12. useMedia
+13. useForm
+
+
 
 ## S.No 14: How will you do error handling?  
 **Ans:** Error handling in Angular involves using try-catch blocks in TypeScript code to capture errors. Additionally, Angular provides error handling mechanisms like \`ErrorHandler\` to centralize error handling.
