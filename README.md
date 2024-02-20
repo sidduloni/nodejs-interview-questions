@@ -138,9 +138,11 @@ Examples **Sementic ** include `<header>`, `<footer>`, `<nav>`, `<section>`, and
 10. useImperativeHandle
 
 **Other Custom Hooks:**
+
 11. useId - Used for generating unique Id's.
 12. useMedia - Lets us check the current screen size without writing our own code.
 13. useForm - Used for managing the form and validation etc.
+
 
 ## S.No 14: Waht is react hook? what are its rules? Explain react hooks
 **Ans**
@@ -183,40 +185,44 @@ It allows us to perform side effects such as fetching data, directly updating DO
    - Timeouts, subscriptions, event listeners, and other effects that are no longer needed should be disposed.
    - We do this by including a return function at the end of the useEffect Hook.
    ```javascript
-	useEffect(() => {
-	    let timer = setTimeout(() => {
-	    setCount((count) => count + 1);
-	  }, 1000);
-	
-	  return () => clearTimeout(timer)
-	  }, []);
+useEffect(() => {
+    let timer = setTimeout(() => {
+    setCount((count) => count + 1);
+  }, 1000);
+
+  return () => clearTimeout(timer)
+  }, []);
    ```
 
-  **3. useContext :**
-     - React Context is a way to manage state globally.
-     - Without Context, we will need to pass the state as "props" through each nested component. This is called **"prop drilling"**.
+**3. useContext :**
+- React Context is a way to manage state globally.
+- Without Context, we will need to pass the state as "props" through each nested component. This is called **"prop drilling"**.
    
-   First we need to create context
-    ```javascript 
-    import { useState, createContext } from "react";
-    const UserContext = createContext()
-    ```
-   Next Wrap child components in the Context Provider
-     ```javascript 
-    function Component1() {
-	  const [user, setUser] = useState("Jesse Hall");
-	  return (
-	    <UserContext.Provider value={user}>
-	      <h1>{`Hello ${user}!`}</h1>
-	      <Component2 user={user} />
-	    </UserContext.Provider>
-	  );
-	}
-    ```
-    Finally use the useContext hook
-     ```javascript 
-     const user = useContext(UserContext);
-    ```
+First we need to create context
+    
+```javascript 
+import { useState, createContext } from "react";
+const UserContext = createContext()
+```
+    
+Next Wrap child components in the Context Provider
+     
+```javascript 
+function Component1() {
+  const [user, setUser] = useState("Jesse Hall");
+  return (
+    <UserContext.Provider value={user}>
+      <h1>{`Hello ${user}!`}</h1>
+      <Component2 user={user} />
+    </UserContext.Provider>
+  );
+}
+```
+Finally use the useContext hook
+    
+```javascript 
+const user = useContext(UserContext);
+```
 
 **4. useRef :**
 - The useRef Hook allows you to persist values between renders.
