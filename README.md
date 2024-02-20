@@ -163,28 +163,29 @@ It allows us to perform side effects such as fetching data, directly updating DO
    `useEffect(<function>, <dependency>)`
    If we dont pass 2nd parameter then useEffect runs on every render.
    ```javascript
-	- No dependency:
-	useEffect(() => {
-	//Runs on every render
-	});
+- No dependency:
+useEffect(() => {
+//Runs on every render
+});
 
-   	- An empty array:
-	useEffect(() => {
-	  //Runs only on the first render
-	}, []);
+- An empty array:
+useEffect(() => {
+  //Runs only on the first render
+}, []);
 
-   	- Props or state values
-   	useEffect(() => {
-	  //Runs on the first render
-	  //And any time any dependency value changes
-	}, [prop, state]);
+- Props or state values
+useEffect(() => {
+  //Runs on the first render
+  //And any time any dependency value changes
+}, [prop, state]);
    
    ```
    **Effect Cleanup** :
    - Some effects require cleanup to reduce memory leaks.
    - Timeouts, subscriptions, event listeners, and other effects that are no longer needed should be disposed.
    - We do this by including a return function at the end of the useEffect Hook.
-   ```javascript
+
+```javascript
 useEffect(() => {
     let timer = setTimeout(() => {
     setCount((count) => count + 1);
@@ -192,7 +193,7 @@ useEffect(() => {
 
   return () => clearTimeout(timer)
   }, []);
-   ```
+```
 
 **3. useContext :**
 - React Context is a way to manage state globally.
@@ -230,26 +231,26 @@ const user = useContext(UserContext);
 - useRef() only returns one item. It returns an Object called **current**.
 - The useRef Hook can also be used to keep track of previous state values.
 ```javascript
-	function App() {
-	  const [inputValue, setInputValue] = useState("");
-	  const previousInputValue = useRef("");
-	
-	  useEffect(() => {
-	    previousInputValue.current = inputValue;
-	  }, [inputValue]);
-	
-	  return (
-	    <>
-	      <input
-	        type="text"
-	        value={inputValue}
-	        onChange={(e) => setInputValue(e.target.value)}
-	      />
-	      <h2>Current Value: {inputValue}</h2>
-	      <h2>Previous Value: {previousInputValue.current}</h2>
-	    </>
-	  );
-	}
+function App() {
+  const [inputValue, setInputValue] = useState("");
+  const previousInputValue = useRef("");
+
+  useEffect(() => {
+    previousInputValue.current = inputValue;
+  }, [inputValue]);
+
+  return (
+    <>
+      <input
+	type="text"
+	value={inputValue}
+	onChange={(e) => setInputValue(e.target.value)}
+      />
+      <h2>Current Value: {inputValue}</h2>
+      <h2>Previous Value: {previousInputValue.current}</h2>
+    </>
+  );
+}
 ```
 
 **5. useReducer :**
