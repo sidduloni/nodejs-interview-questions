@@ -124,7 +124,7 @@ Examples **Sementic ** include `<header>`, `<footer>`, `<nav>`, `<section>`, and
 - \`display: none\` hides the element completely, removing it from the layout and making it occupy no space.
 - \`visibility: hidden\` hides the element, but it still takes up space as if it were visible.
 
-## S.No 13: List React Hooks  
+## S.No 13: List React Built-in Hooks  
 **Ans:** 
 1. useState
 2. useEffect
@@ -137,15 +137,146 @@ Examples **Sementic ** include `<header>`, `<footer>`, `<nav>`, `<section>`, and
 9. useDebugValue
 10. useImperativeHandle
 
-    Other Hooks:
-11. useId
-12. useMedia
-13. useForm
+**Other Custom Hooks:**
+11. useId - Used for generating unique Id's.
+12. useMedia - Lets us check the current screen size without writing our own code.
+13. useForm - Used for managing the form and validation etc.
 
+## S.No 14: Waht is react hook? what are its rules? Explain react hooks
+**Ans**
+Hooks allow us to "hook" into React features such as state and lifecycle methods.
 
+**There are 3 rules for hooks:**
+- Hooks can only be called inside React function components.
+- Hooks can only be called at the top level of a component.
+- Hooks cannot be conditional
 
-## S.No 14: How will you do error handling?  
-**Ans:** Error handling in Angular involves using try-catch blocks in TypeScript code to capture errors. Additionally, Angular provides error handling mechanisms like \`ErrorHandler\` to centralize error handling.
+**React Hooks**
+
+**1. useState :**
+State refers to data or property that needs to be tracking in an application. State accepts initial value and return 2 values - Current state and a function that updates the state.
+
+**2. useEffect:** 
+It allows us to perform side effects such as fetching data, directly updating DOM, timers. It accepts 2 arguments, second argument is optional.
+   `useEffect(<function>, <dependency>)`
+   If we dont pass 2nd parameter then useEffect runs on every render.
+   ```javascript
+	- No dependency:
+	useEffect(() => {
+	//Runs on every render
+	});
+
+   	- An empty array:
+	useEffect(() => {
+	  //Runs only on the first render
+	}, []);
+
+   	- Props or state values
+   	useEffect(() => {
+	  //Runs on the first render
+	  //And any time any dependency value changes
+	}, [prop, state]);
+   
+   ```
+   **Effect Cleanup** :
+   - Some effects require cleanup to reduce memory leaks.
+   - Timeouts, subscriptions, event listeners, and other effects that are no longer needed should be disposed.
+   - We do this by including a return function at the end of the useEffect Hook.
+   ```javascript
+	useEffect(() => {
+	    let timer = setTimeout(() => {
+	    setCount((count) => count + 1);
+	  }, 1000);
+	
+	  return () => clearTimeout(timer)
+	  }, []);
+   ```
+
+  **3. useContext :**
+     - React Context is a way to manage state globally.
+     - Without Context, we will need to pass the state as "props" through each nested component. This is called **"prop drilling"**.
+   
+   First we need to create context
+    ```javascript 
+    import { useState, createContext } from "react";
+    const UserContext = createContext()
+    ```
+   Next Wrap child components in the Context Provider
+     ```javascript 
+    function Component1() {
+	  const [user, setUser] = useState("Jesse Hall");
+	  return (
+	    <UserContext.Provider value={user}>
+	      <h1>{`Hello ${user}!`}</h1>
+	      <Component2 user={user} />
+	    </UserContext.Provider>
+	  );
+	}
+    ```
+    Finally use the useContext hook
+     ```javascript 
+     const user = useContext(UserContext);
+    ```
+
+**4. useRef :**
+- The useRef Hook allows you to persist values between renders.
+- It can be used to access a DOM element directly.
+- useRef() only returns one item. It returns an Object called **current**.
+- The useRef Hook can also be used to keep track of previous state values.
+```javascript
+	function App() {
+	  const [inputValue, setInputValue] = useState("");
+	  const previousInputValue = useRef("");
+	
+	  useEffect(() => {
+	    previousInputValue.current = inputValue;
+	  }, [inputValue]);
+	
+	  return (
+	    <>
+	      <input
+	        type="text"
+	        value={inputValue}
+	        onChange={(e) => setInputValue(e.target.value)}
+	      />
+	      <h2>Current Value: {inputValue}</h2>
+	      <h2>Previous Value: {previousInputValue.current}</h2>
+	    </>
+	  );
+	}
+```
+
+**5. useReducer :**
+The useReducer Hook is similar to the useState Hook. Used for complex logic
+
+**6. useCallback :**
+- It returns a memoized callback **function**.
+- The useCallback Hook only runs when one of its dependencies update. This can improve performance.
+
+**7. useMemo :**
+- It memoize the value
+
+Example of useCallback & useMemo : 
+```javascript
+useCallback:
+useCallback(() => {
+    // your code 
+  }, [dependency]);
+
+useMemo:
+export default memo(Todos);
+```
+Note:  Both are same. The main difference is that useMemo returns a memoized value and useCallback returns a memoized function.
+
+**8. useLayoutEffect :** 
+- Similar to useEffect only difference is it will run after rendering the component but before painting on the screen.
+
+**9. useDebugValue :**
+- Used to debug custom hooks using react developer tools.
+
+**10. useImperativeHandle :**
+- Used to modify the exposed ref.
+
 
 ## S.No 15: What are decorators in Angular and its types?  
 **Ans:** Decorators in Angular are functions that modify the behavior of classes or class members. Types of decorators include \`@Component\`, \`@Directive\`, \`@Injectable\`, \`@Pipe\`, and \`@NgModule\`.
